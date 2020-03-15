@@ -1,0 +1,12 @@
+public class RailFenceCommandTest {
+
+	public static void main(String[] args) {
+	RailFenceCommand railfenceencrypt = new RailFenceCommand("4","Lyra Pireva ");
+		System.out.println(railfenceencrypt.encrypt());
+		railfenceencrypt.ShowMatricaEnkriptimi();
+	RailFenceCommand railfencedecrypt=new RailFenceCommand("4","MAARARDARIINGTBI");
+		System.out.println(railfencedecrypt.decrypt());
+		railfencedecrypt.ShowMatricaDekriptim();
+	}
+
+}
