@@ -5,15 +5,27 @@ public class Program {
 		try {
 			switch(args[0]) {
 			case "rail-fence":
-				if(args.length>4)
+				if(args.length>5)
 					throw new NrOfCommandsNotValidException();
-				RailFenceCommand rf=new RailFenceCommand(args[2],args[3]);
+				RailFenceCommand rf=new RailFenceCommand();
 				switch(args[1]) {
 					case "encrypt":
-						System.out.println(rf.encrypt());
+						if(args[3].equals("show")) {
+							System.out.println(rf.encrypt(args[2],args[4]));
+							rf.ShowMatricaEnkriptimi(args[2],args[4]);
+						}
+						else {
+							System.out.println(rf.encrypt(args[2],args[3]));
+						}
 						break;
 					case "decrypt":
-						System.out.println(rf.decrypt());
+						if(args[3].equals("show")) {
+							System.out.println(rf.decrypt(args[2],args[4]));
+							rf.ShowMatricaDekriptim(args[2],args[4]);
+						}
+						else {
+							System.out.println(rf.encrypt(args[2],args[3]));
+						}
 						break;
 					default:
 						System.err.println("Komanda e dhene nuk eshte e vlefshme!"+"\nNenkomandat e vlefshme per komanden rail-fence jane:"+
