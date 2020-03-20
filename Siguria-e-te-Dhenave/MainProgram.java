@@ -48,20 +48,31 @@ public class Program {
 				}
 				break;
 			case "numerical":
-				if(args.length>3)
+				if(args.length>5)
 					throw new NrOfCommandsNotValidException();
-				NumericalCommand nc=new NumericalCommand(args[2]);
+				NumericalCommand nc=new NumericalCommand();
 				switch(args[1]) {
 				case "encrypt":
-					System.out.println(nc.encrypt());
+					if(args[2].equals("seperator")) {
+						nc.setSeperator(args[3]);
+						System.out.println(nc.encrypt(args[4]));
+						}
+					else
+						System.out.println(nc.encrypt(args[2]));
 					break;
 				case "decrypt":
-					for(int i=0;i<args[2].length();i++)
-					{
-						if(Character.isLetter(args[2].charAt(i)))
-							throw new NumberFormatException();
-					}
-					System.out.println(nc.decrypt());
+					if(args[2].equals("seperator")) {
+						nc.setSeperator(args[3]);
+						System.out.println(nc.decrypt(args[4]));
+						}
+					else {
+						for(int i=0;i<args[2].length();i++)
+						{
+							if(Character.isLetter(args[2].charAt(i)))
+								throw new NumberFormatException();
+						}
+						System.out.println(nc.decrypt(args[2]));
+					}	
 					break;
 				default:
 					System.err.println("Komanda e dhene nuk eshte e vlefshme!"+"\nNenkomandat e vlefshme per komanden numerical jane:"+
