@@ -1,4 +1,60 @@
 # Projekti-Siguria-e-te-Dhenave-Gr4
+Console programi eshte i krijuar me ndihmen e gjuhes programuese JAVA ne Eclipse-workspace.
+Programi ka 3 komanda kryesore per secilen prej tyre eshte krijuar nga nje klase duke perfshire edhe klasat e Exceptions.
+Klasat e komandave jane instancuar ne MainProgram(programi kryesor) dhe kemi perdorur switch per shqyrtimin e te gjitha rasteve,
+ku secili case paraqet funksion te krijuar ne klasat perkatese.
+Gjithashtu per shqyrtimin e gabimeve kemi perdorur try and catch qe programi te mos behet terminate.
+1.Udhëzimet për ekzekutimin e programit
+Programi ka 3 komanda:
+	*rail-fence
+	*case
+	*numerical
+Ne secilen nga rastet argumenti i pare(args[0]) eshte njera nga keto komanda.
+*Komanda rail-fence ka nenkomandat encrypt dhe decrypt te cilat mund te thirren ne kete menyre:
+	rail-fence encrypt
+	rail-fence decrypt
+Gjithashtu duhet te jepet numri i rreshtave n:
+	Shembull:
+	  rail-fence nenkomanda n
+Me pas jepet teksti:
+	Shembull:
+	  rail-fence nenkomanda n "teksti"
+Gjithashtu kemi bere opsionin shtese 'show' i cili jepet sipas deshires, por gjithsesi para tekstit, per te shfaqur matricen e enkriptimit ose dekriptimit.
+	Shembull:
+	  rail-fence nenkomanda n show "teksti"
+
+*Komanda case ka nenkomandat lower, upper, capitalize, inverse dhe alternating, te cilat mund te thirren ne kete menyre:
+	case nenkomanda "teksti"
+Gjithashtu kemi bere opsionin shtese 'sentence' i cili jepet sipas deshires, por gjithsesi para tekstit, per te shfaqur fjalite e tekstit ne funksione te ndryshme, 
+ku ne mes te tyre vendoset nje shenje e pikesimit ('.',',','?','!')
+	Shembull:
+	  case nenkomanda sentence "teksti"
+
+*Komanda numerical ka nenkomandat encrypt dhe decrypt, te cilat mund te thirren ne kete menyre:
+	numerical nenkomanda "teksti"
+Gjithashtu kemi bere opsionin shtese 'separator' i cili jepet sipas deshires, por gjithsesi para tekstit, i cili e specifikon karakterin ndarës.Gjithashtu 
+ruhen hapesirat e tekstit origjinal permes karakterit '~'.
+	Shembull:
+	  numerical nenkomanda separator <char> "teksti"
+	
+
+2. Përshkrim i shkurtër për secilën komandë
+	*rail-fence:
+		encrypt-enkripton tekstin permes matrices
+		decrypt-dekripton ciphertext-in permes matrices
+	Kjo komande nuk paraqet hapesirat mes fjaleve ne matrice, dhe nese shtylla e fundit nuk plotesohet me karaktere, vendet e zbrazeta mbushen me 'w'
+	
+	*case:
+		lower-e kthen tekstin ne shkronja te vogla
+		upper-e kthen tekstin ne shkronja te medha
+		capitalize-shkronjen e pare te seciles fjale e kthen te madhe
+		inverse-shkronjat te cilat ne tekst jane te medha i kthen te vogla, dhe anasjelltas
+		alternating-kthen nje shkronje te madhe, nje te vogel e keshtu me rradhe
+	
+	*numerical:
+		encrypt-enkripton tekstin ne numrat perkates te shkronjave ne alfabet
+		decrypt-dekripton ciphertext-in ne shkronja
+	Kjo komande gjate dekriptimit ruan hapesirat origjinale mes fjaleve ne tekst.
 
 3. Rezultatet e ekzekutimit me nga një shembull për secilën komandë dhe nënkomandë
        *rail-fence:
