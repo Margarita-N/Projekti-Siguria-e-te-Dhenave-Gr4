@@ -1,4 +1,3 @@
-
 public class Program {
 
 	public static void main(String[] args) throws NrOfCommandsNotValidException,MainCommandException,NumberFormatException{
@@ -24,7 +23,7 @@ public class Program {
 							rf.ShowMatricaDekriptim(args[2],args[4]);
 						}
 						else {
-							System.out.println(rf.encrypt(args[2],args[3]));
+							System.out.println(rf.decrypt(args[2],args[3]));
 						}
 						break;
 					default:
@@ -34,24 +33,54 @@ public class Program {
 				}
 				break;
 			case "case":
-				if(args.length>3)
+				if(args.length>4)
 					throw new NrOfCommandsNotValidException();
-				CaseCommand cc=new CaseCommand(args[2]);
+				CaseCommand cc=new CaseCommand();
 				switch(args[1]) {
 				case "lower":
-					System.out.println(cc.lower());
+					if(args[2].equals("sentence")) {
+						System.out.println(cc.lower(args[3])+"\n"+
+										   cc.sentence());
+					}
+					else {
+						System.out.println(cc.lower(args[2]));
+					}
 					break;
 				case "upper":
-					System.out.println(cc.upper());
+					if(args[2].equals("sentence")) {
+						System.out.println(cc.upper(args[3])+"\n"+
+										   cc.sentence());
+					}
+					else {
+						System.out.println(cc.upper(args[2]));
+					}
 					break;
 				case "capitalize":
-					System.out.println(cc.capitalize());
+					if(args[2].equals("sentence")) {
+						System.out.println(cc.capitalize(args[3])+"\n"+
+										   cc.sentence());
+					}
+					else {
+						System.out.println(cc.capitalize(args[2]));
+					}
 					break;
 				case "inverse":
-					System.out.println(cc.inverse());
+					if(args[2].equals("sentence")) {
+						System.out.println(cc.inverse(args[3])+"\n"+
+										   cc.sentence());
+					}
+					else {
+						System.out.println(cc.inverse(args[2]));
+					}
 					break;
 				case "alternating":
-					System.out.println(cc.alternating());
+					if(args[2].equals("sentence")) {
+						System.out.println(cc.alternating(args[3])+"\n"+
+										   cc.sentence());
+					}
+					else {
+						System.out.println(cc.alternating(args[2]));
+					}
 					break;
 				default:
 					System.err.println("Komanda e dhene nuk eshte e vlefshme!"+"\nNenkomandat e vlefshme per komanden case jane:"+
