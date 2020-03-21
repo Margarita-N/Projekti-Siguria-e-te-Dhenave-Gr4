@@ -4,11 +4,12 @@ public class RailFenceCommand {
 	String text;
 
 		
-		public RailFenceCommand(String rows,String text) {
+		public RailFenceCommand() {
+		
+		}
+		public String encrypt(String rows,String text) {
 			this.rows=rows;
 			this.text=text;
-		}
-		public String encrypt() {
 			this.text =this.text.replaceAll(" ","");
 			StringBuilder sb=new StringBuilder();
 			double rows_d=Double.valueOf(this.rows);
@@ -34,8 +35,10 @@ public class RailFenceCommand {
 		}
 			return sb.toString();
 		}
-		public String decrypt() {
-			this.text=this.text.replaceAll(" ",""); 
+		public String decrypt(String rows,String text) {
+			this.rows=rows;
+			this.text=text;
+			this.text=this.text.replaceAll(" ","");  
 			StringBuilder str =new StringBuilder(); 
 			double rowsindouble=Double.valueOf(this.rows);
 			char[][] matrica=new char [(int)rowsindouble][(int)(Math.ceil(this.text.length()/rowsindouble))];
@@ -66,7 +69,9 @@ public class RailFenceCommand {
 		}
 		
 
-		public void ShowMatricaEnkriptimi() {
+		public void ShowMatricaEnkriptimi(String rows,String text) {
+			this.rows=rows;
+			this.text=text;
 			double rows_d=Double.valueOf(this.rows);
 			this.text =this.text.replaceAll(" ","");
 			char[][] matrica = new char[(int)rows_d][(int)(Math.ceil(this.text.length()/rows_d))];
@@ -93,7 +98,9 @@ public class RailFenceCommand {
 			}
 		
 		}
-		public void ShowMatricaDekriptim() {
+		public void ShowMatricaDekriptim(String rows,String text) {
+			this.rows=rows;
+			this.text=text;
 			this.text=this.text.replaceAll(" ","");
 			double rowsindouble=Double.valueOf(this.rows);
 			char[][] matrica=new char [(int)rowsindouble][(int)(Math.ceil(this.text.length()/rowsindouble))];
@@ -112,6 +119,7 @@ public class RailFenceCommand {
 			}
 			for(int j=0;j<(int)(Math.ceil(this.text.length()/rowsindouble));j++) {
 				for(int i=0;i<(int)rowsindouble;i++) {
+					System.out.print(matrica[i][j]+" ");
 					
 					}
 				System.out.println();
