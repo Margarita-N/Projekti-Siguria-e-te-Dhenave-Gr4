@@ -4,6 +4,7 @@ Programi ka 3 komanda kryesore per secilen prej tyre eshte krijuar nga nje klase
 Klasat e komandave jane instancuar ne MainProgram(programi kryesor) dhe kemi perdorur switch per shqyrtimin e te gjitha rasteve,
 ku secili case paraqet funksion te krijuar ne klasat perkatese.
 Gjithashtu per shqyrtimin e gabimeve kemi perdorur try and catch qe programi te mos behet terminate.
+
 1.Udhëzimet për ekzekutimin e programit
 Programi ka 3 komanda:
 	*rail-fence
