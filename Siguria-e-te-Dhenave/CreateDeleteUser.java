@@ -31,4 +31,11 @@ public class CreateDeleteUser {
             else throw new NamingException();
         }
     }
+  //duhet mi gjeneru celsat per me i ru n files
+    private KeyPair keyGenerator() throws Exception{
+            KeyPairGenerator celsat=KeyPairGenerator.getInstance("RSA");
+            celsat.initialize(1024);
+
+            return celsat.generateKeyPair();
+    }
 }
