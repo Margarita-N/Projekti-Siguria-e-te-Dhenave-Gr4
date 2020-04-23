@@ -18,5 +18,17 @@ import java.security.*;
 import java.security.spec.RSAPrivateCrtKeySpec;
 
 public class CreateDeleteUser {
+  String emri;
+    CreateDeleteUser(String emri){
+        this.emri=emri;
+    }
 
+    private void validimi(String emri) throws NamingException{
+        char c;
+        for(int i=0;i<emri.length();i++){
+            c=emri.charAt(i);
+            if((c>=48 && c<=57)||(c>=65 && c<=90)||(c>=97 && c<=122)|| c==95) continue;
+            else throw new NamingException();
+        }
+    }
 }
