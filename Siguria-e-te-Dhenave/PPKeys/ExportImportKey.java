@@ -16,5 +16,26 @@ public class ExportImportKey {
                     else throw new InvalidPathException(this.path,"invalid");
 
                     break;
+                
+                case "public":
+                    File xmlFilePublic=new File("src/PPKeys/keys/"+this.emri+".pub.xml");
 
+                    if(!xmlFilePublic.exists()) throw new FileNotFoundException();
+                    if(this.path=="") throw new InvalidPathException(this.path,"empty");
+
+                    Path movePublic=Files.move(Paths.get("src/PPKeys/keys/"+this.emri+".pub.xml"),Paths.get(this.path));
+                    if(movePublic != null) System.out.println("Celesi publik u ruajt ne file-in "+this.path);
+                    else throw new InvalidPathException(this.path,"invalid");
+                    break;
+
+
+                default:
+                    throw new IllegalStateException("Unexpected value: " + this.option);
+            }
+
+
+        }catch(FileNotFoundException e){
+            System.out.println("Gabim:Celesi '"+this.emri+"' nuk ekziston");
+        }
+            
 }
