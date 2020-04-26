@@ -47,6 +47,14 @@ public class CreateDeleteUser {
             KeyPair dyshjaCelesave=keyGenerator();
             PublicKey celesiPublik=dyshjaCelesave.getPublic();
             PrivateKey celesiPrivat=dyshjaCelesave.getPrivate();
+            
+            KeyFactory kf=KeyFactory.getInstance("RSA");
+            RSAPrivateCrtKeySpec rsaPrivate=kf.getKeySpec(celesiPrivat,RSAPrivateCrtKeySpec.class);
+
+            DocumentBuilderFactory documentFactory=DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder=documentFactory.newDocumentBuilder();
+            Document documentPrivate=documentBuilder.newDocument();
+            Document documentPublic=documentBuilder.newDocument();
 
             
         } catch(Exception e){
