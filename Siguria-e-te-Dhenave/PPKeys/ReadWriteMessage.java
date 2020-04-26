@@ -30,4 +30,23 @@ public class ReadWriteMessage {
             return "";
         }
     }
+    
+    public String decrypt(String teksti,String modulus,String exponent){
+        try{
+            RSAPrivateKeySpec keySpec=new RSAPrivateKeySpec(new BigInteger(modulus),new BigInteger(exponent));
+            KeyFactory keyFactory=KeyFactory.getInstance("RSA");
+            PrivateKey celesiPrivat=keyFactory.generatePrivate(keySpec);
+
+            byte[] ciphertextDecoded=Base64.getDecoder().decode(teksti.getBytes());
+            Cipher cipher=Cipher.getInstance("RSA/ECB/PKCS1Padding");
+            cipher.init(Cipher.DECRYPT_MODE,celesiPrivat);
+
+            byte[] plaintexti=cipher.doFinal(ciphertextDecoded);
+            return new String(plaintexti);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return "";
+        }
+
+    }
 }
