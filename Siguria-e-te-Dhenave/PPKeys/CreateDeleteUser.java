@@ -38,4 +38,19 @@ public class CreateDeleteUser {
 
             return celsat.generateKeyPair();
     }
+  
+  public void createUser(){
+        //Krijimi i celsave publik dhe privat
+        try{
+            validimi(this.emri);
+
+            KeyPair dyshjaCelesave=keyGenerator();
+            PublicKey celesiPublik=dyshjaCelesave.getPublic();
+            PrivateKey celesiPrivat=dyshjaCelesave.getPrivate();
+
+            
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
 }
