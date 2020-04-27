@@ -42,4 +42,15 @@ public class xmlCreator {
         File xmlFile=new File(path);
 
         if(xmlFile.exists()) throw new FileAlreadyExistsException(xmlFile.toString());
+        
+        Element RSAroot= document.createElement("RSAKeyValue");
+        document.appendChild(RSAroot);
+
+        Element modulusElement=document.createElement("Modulus");
+        modulusElement.appendChild(document.createTextNode(modulus.toString()));
+        RSAroot.appendChild(modulusElement);
+
+        Element publicExponentElement=document.createElement("Exponent");
+        publicExponentElement.appendChild(document.createTextNode(publicExponent.toString()));
+        RSAroot.appendChild(publicExponentElement);
 }
