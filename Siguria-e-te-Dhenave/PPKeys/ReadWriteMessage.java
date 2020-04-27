@@ -56,6 +56,14 @@ public class ReadWriteMessage {
             Cipher ciphertext=Cipher.getInstance("DES/CBC/PKCS5Padding");
             AlgorithmParameterSpec initial=new IvParameterSpec(initialVector);
             ciphertext.init(Cipher.ENCRYPT_MODE,celesi,initial);
+            
+             byte[] cipherByte=ciphertext.doFinal(plaintext.getBytes());
+            return Base64.getEncoder().encodeToString(cipherByte);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return "";
+        }
+    }
 
 
     }
