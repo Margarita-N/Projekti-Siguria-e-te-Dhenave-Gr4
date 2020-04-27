@@ -70,10 +70,15 @@ public class CreateDeleteUser {
                 Files.delete(pathPrivate);
                 System.out.println("Eshte larguar celesi privat '"+this.emri+"'");
             }
-          if(Files.exists(pathPublic)) {
+            if(Files.exists(pathPublic)) {
                 Files.delete(pathPublic);
                 System.out.println("Eshte larguar celesi public '"+this.emri+"'");
             }
             else throw new FileNotFoundException();
+        }catch(NamingException e){
+            System.out.println("Emri i dhene nuk eshte valid\nEmri duhet te permbaje vetem shkronja,numra apo '_'");
+        }catch(Exception e){
+            System.out.println("Gabim:Celesi '"+this.emri+"' nuk ekziston");
         }
+    }
 }
