@@ -65,5 +65,27 @@ public class ExportImportKey {
             System.err.println(e.getMessage());
         }
         
+        public void importKey(String externalPath){
+        //Path i jashtem eshte per vendodhjen e file per importim eshte i domosdoshem
+        this.externalPath=externalPath;
+
+        try{
+            //Shikohet a ekziston nje file ne pathin e dhene qofte url apo path i zakonshem
+            boolean exists;
+            if(externalPath.contains("http")){
+                //Fillimisht shkohet a ekziston nje file i tille
+                URL pathUrl=new URL(externalPath);
+                HttpURLConnection httpURLConnection=(HttpURLConnection)pathUrl.openConnection();
+                int response=httpURLConnection.getResponseCode();
+
+                exists=(response == 200);
+                if(!exists) throw new InvalidPathException(externalPath,"invalid");
+            }
             
+        }catch(InvalidPathException e){
+            System.out.println(e.getMessage());
+            //System.out.println("Gabim:File i dhene nuk eshte celes valid");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
 }
