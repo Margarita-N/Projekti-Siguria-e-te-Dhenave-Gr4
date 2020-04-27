@@ -48,6 +48,17 @@ public class ExportImportKey {
                         }
                         System.out.println(sb.toString());
                         break;
+                    case "public":
+                        StringBuilder sbPublic=new StringBuilder();
+                        Scanner readPublic=new Scanner(new File("src/PPKeys/keys/"+this.emri+".pub.xml"));
+                        while(readPublic.hasNext()) {
+                            sbPublic.append(readPublic.next());
+                        }
+                        System.out.println(sbPublic.toString());
+                        break;
+                }
+
+                }
         
             
 }
