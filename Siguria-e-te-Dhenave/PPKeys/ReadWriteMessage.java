@@ -47,6 +47,13 @@ public class ReadWriteMessage {
             System.out.println(e.getMessage());
             return "";
         }
+        public String encryptDES(String plaintext,String key,byte[] initialVector){
+        try{
+            DESKeySpec desKeySpec=new DESKeySpec(key.getBytes());
+            SecretKeyFactory skf=SecretKeyFactory.getInstance("DES");
+            SecretKey celesi=skf.generateSecret(desKeySpec);
 
     }
+    
+    
 }
