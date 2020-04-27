@@ -80,6 +80,13 @@ public class ExportImportKey {
 
                 exists=(response == 200);
                 if(!exists) throw new InvalidPathException(externalPath,"invalid");
+            }else{
+                File externalFile=new File(externalPath);
+                exists=externalFile.exists();
+
+                if(!exists) throw new InvalidPathException(externalPath,"invalid");
+
+                
             }
             
         }catch(InvalidPathException e){
