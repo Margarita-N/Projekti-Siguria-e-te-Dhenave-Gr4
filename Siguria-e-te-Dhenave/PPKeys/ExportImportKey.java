@@ -37,5 +37,17 @@ public class ExportImportKey {
         }catch(FileNotFoundException e){
             System.out.println("Gabim:Celesi '"+this.emri+"' nuk ekziston");
         }
+    catch(InvalidPathException e){
+            try{
+                switch(this.option){
+                    case "private":
+                        StringBuilder sb=new StringBuilder();
+                        Scanner read=new Scanner(new File("src/PPKeys/keys/"+this.emri+".xml"));
+                        while(read.hasNext()) {
+                            sb.append(read.next());
+                        }
+                        System.out.println(sb.toString());
+                        break;
+        
             
 }
