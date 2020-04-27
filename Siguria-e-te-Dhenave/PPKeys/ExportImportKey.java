@@ -58,7 +58,12 @@ public class ExportImportKey {
                         break;
                 }
 
+                }catch(FileNotFoundException m){
+                    System.out.println("Gabim:Celesi '"+this.emri+"' nuk ekziston");
                 }
+            }catch(Exception e){
+            System.err.println(e.getMessage());
+        }
         
             
 }
