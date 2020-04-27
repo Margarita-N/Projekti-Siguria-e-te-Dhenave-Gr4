@@ -70,10 +70,19 @@ public class ReadWriteMessage {
             DESKeySpec desKeySpec=new DESKeySpec(key.getBytes());
             SecretKeyFactory skf=SecretKeyFactory.getInstance("DES");
             SecretKey celesi=skf.generateSecret(desKeySpec);
+            
+            Cipher plaintext=Cipher.getInstance("DES/CBC/PKCS5Padding");
+            AlgorithmParameterSpec initial=new IvParameterSpec(initialVector);
+            plaintext.init(Cipher.DECRYPT_MODE,celesi,initial);
+            byte[] plaintextByte=plaintext.doFinal(cipherDecoded);
+            return new String(plaintextByte);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return "";
+        }
 
 
-
-    }
+             
     
     
 }
