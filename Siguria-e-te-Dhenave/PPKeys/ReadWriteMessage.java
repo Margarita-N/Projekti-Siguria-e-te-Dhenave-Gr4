@@ -64,6 +64,13 @@ public class ReadWriteMessage {
             return "";
         }
     }
+         public String decryptDES(String ciphertext,String key,byte[] initialVector){
+            try{
+            byte[] cipherDecoded=Base64.getDecoder().decode(ciphertext);
+            DESKeySpec desKeySpec=new DESKeySpec(key.getBytes());
+            SecretKeyFactory skf=SecretKeyFactory.getInstance("DES");
+            SecretKey celesi=skf.generateSecret(desKeySpec);
+
 
 
     }
