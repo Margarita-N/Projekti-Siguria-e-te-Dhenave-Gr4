@@ -70,4 +70,10 @@ public class CreateDeleteUser {
                 Files.delete(pathPrivate);
                 System.out.println("Eshte larguar celesi privat '"+this.emri+"'");
             }
+          if(Files.exists(pathPublic)) {
+                Files.delete(pathPublic);
+                System.out.println("Eshte larguar celesi public '"+this.emri+"'");
+            }
+            else throw new FileNotFoundException();
+        }
 }
