@@ -61,4 +61,13 @@ public class CreateDeleteUser {
             System.out.println(e.getMessage());
         }
     }
+  public void deleteUser(){
+        Path pathPrivate= Path.of("src/PPKeys/keys/"+this.emri+".xml");
+        Path pathPublic=Path.of("src/PPKeys/keys/"+this.emri+".pub.xml");
+        try{
+            validimi(this.emri);
+            if(Files.exists(pathPrivate)) {
+                Files.delete(pathPrivate);
+                System.out.println("Eshte larguar celesi privat '"+this.emri+"'");
+            }
 }
