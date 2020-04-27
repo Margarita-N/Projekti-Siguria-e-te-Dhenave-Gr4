@@ -52,6 +52,11 @@ public class ReadWriteMessage {
             DESKeySpec desKeySpec=new DESKeySpec(key.getBytes());
             SecretKeyFactory skf=SecretKeyFactory.getInstance("DES");
             SecretKey celesi=skf.generateSecret(desKeySpec);
+            
+            Cipher ciphertext=Cipher.getInstance("DES/CBC/PKCS5Padding");
+            AlgorithmParameterSpec initial=new IvParameterSpec(initialVector);
+            ciphertext.init(Cipher.ENCRYPT_MODE,celesi,initial);
+
 
     }
     
