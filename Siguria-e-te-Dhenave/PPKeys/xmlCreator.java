@@ -73,4 +73,18 @@ public class xmlCreator {
         Element inverseQElement=document.createElement("InverseQ");
         inverseQElement.appendChild(document.createTextNode(InverseQ.toString()));
         RSAroot.appendChild(inverseQElement);
+        
+        lement elementD=document.createElement("D");
+        elementD.appendChild(document.createTextNode(privateExponent.toString()));
+        RSAroot.appendChild(elementD);
+
+        TransformerFactory transformerFactory=TransformerFactory.newInstance();
+        Transformer transformer=transformerFactory.newTransformer();
+        DOMSource domSource=new DOMSource(document);
+        StreamResult streamResult=new StreamResult(xmlFile);
+
+        transformer.transform(domSource,streamResult);
+        System.out.println("Eshte krijuar celesi privat '"+path+"'");
+    }
+}
 }
