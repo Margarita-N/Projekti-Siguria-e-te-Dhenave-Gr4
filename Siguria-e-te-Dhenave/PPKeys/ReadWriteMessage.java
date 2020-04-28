@@ -101,7 +101,12 @@ public class ReadWriteMessage {
             for(int i=0;i<initialVector.length;i++){
                 initialVector[i]=(byte)((Math.random()*((99-10)+1))+10);
             }
-             
-    
+             StringBuilder stringBuilder=new StringBuilder();
+
+            stringBuilder.append(Base64.getEncoder().encodeToString(marresi.getBytes("UTF8")));
+            stringBuilder.append(".");
+            stringBuilder.append(Base64.getEncoder().encodeToString(initialVector));
+            stringBuilder.append(".");
+ 
     
 }
