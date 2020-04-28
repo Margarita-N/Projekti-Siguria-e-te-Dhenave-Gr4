@@ -107,6 +107,10 @@ public class ReadWriteMessage {
             stringBuilder.append(".");
             stringBuilder.append(Base64.getEncoder().encodeToString(initialVector));
             stringBuilder.append(".");
+            String celesiEnkriptuar=encrypt(celesi.toString(),document.getElementsByTagName("Modulus").item(0).getTextContent(),document.getElementsByTagName("Exponent").item(0).getTextContent());
+            stringBuilder.append(Base64.getEncoder().encodeToString(celesiEnkriptuar.getBytes()));
+            stringBuilder.append(".");
+            
  
     
 }
