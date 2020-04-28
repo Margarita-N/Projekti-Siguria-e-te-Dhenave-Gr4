@@ -126,7 +126,12 @@ public class ReadWriteMessage {
             System.out.println(e.getMessage());
         }
     }
+    public void messageDecoder(String message) throws Exception{
+        String[] messaageArray=message.split("\\.");
+
+        byte[] marresiBytes=Base64.getDecoder().decode(messaageArray[0].getBytes());
+        String marresi=new String(marresiBytes);
             
  
-    
+    } 
 }
