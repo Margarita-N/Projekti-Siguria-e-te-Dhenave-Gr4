@@ -120,6 +120,12 @@ public class ReadWriteMessage {
                 myWriter.write(stringBuilder.toString());
                 myWriter.close();
             }
+            }catch(FileNotFoundException e){
+            System.out.println("Gabim:Celesi publik '"+this.emri+"' nuk ekziston");
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
             
  
     
