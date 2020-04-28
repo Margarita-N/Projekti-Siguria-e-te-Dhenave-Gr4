@@ -10,10 +10,9 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.math.BigInteger;
 import java.nio.file.FileAlreadyExistsException;
-import java.util.Base64;
 
 public class xmlCreator {
-    public xmlCreator(String path, Document document, BigInteger modulus, BigInteger exponent) throws Exception{
+    public xmlCreator(String path, Document document, String modulus, String exponent) throws Exception{
         File xmlFile=new File(path);
 
         if(xmlFile.exists()) throw new FileAlreadyExistsException(xmlFile.toString());
@@ -22,11 +21,11 @@ public class xmlCreator {
         document.appendChild(RSAroot);
 
         Element modulusElement=document.createElement("Modulus");
-        modulusElement.appendChild(document.createTextNode(modulus.toString()));
+        modulusElement.appendChild(document.createTextNode(modulus));
         RSAroot.appendChild(modulusElement);
 
         Element exponentElement=document.createElement("Exponent");
-        exponentElement.appendChild(document.createTextNode(exponent.toString()));
+        exponentElement.appendChild(document.createTextNode(exponent));
         RSAroot.appendChild(exponentElement);
 
         TransformerFactory transformerFactory=TransformerFactory.newInstance();
@@ -37,45 +36,46 @@ public class xmlCreator {
         transformer.transform(domSource,streamResult);
         System.out.println("Eshte krijuar celesi publik '"+path+"'");
     }
-    public xmlCreator(String path,Document document,BigInteger modulus,BigInteger publicExponent,BigInteger P,BigInteger Q,BigInteger DP,BigInteger DQ,BigInteger InverseQ,BigInteger privateExponent)
+
+    public xmlCreator(String path,Document document,String modulus,String publicExponent,String P,String Q,String DP,String DQ,String InverseQ,String privateExponent)
             throws Exception{
         File xmlFile=new File(path);
 
         if(xmlFile.exists()) throw new FileAlreadyExistsException(xmlFile.toString());
-        
+
         Element RSAroot= document.createElement("RSAKeyValue");
         document.appendChild(RSAroot);
 
         Element modulusElement=document.createElement("Modulus");
-        modulusElement.appendChild(document.createTextNode(modulus.toString()));
+        modulusElement.appendChild(document.createTextNode(modulus));
         RSAroot.appendChild(modulusElement);
 
         Element publicExponentElement=document.createElement("Exponent");
-        publicExponentElement.appendChild(document.createTextNode(publicExponent.toString()));
+        publicExponentElement.appendChild(document.createTextNode(publicExponent));
         RSAroot.appendChild(publicExponentElement);
-        
+
         Element elementP=document.createElement("P");
-        elementP.appendChild(document.createTextNode(P.toString()));
+        elementP.appendChild(document.createTextNode(P));
         RSAroot.appendChild(elementP);
 
         Element elementQ=document.createElement("Q");
-        elementQ.appendChild(document.createTextNode(Q.toString()));
+        elementQ.appendChild(document.createTextNode(Q));
         RSAroot.appendChild(elementQ);
 
         Element elementDP=document.createElement("DP");
-        elementDP.appendChild(document.createTextNode(DP.toString()));
+        elementDP.appendChild(document.createTextNode(DP));
         RSAroot.appendChild(elementDP);
-        
+
         Element elementDQ=document.createElement("DQ");
-        elementDQ.appendChild(document.createTextNode(DQ.toString()));
+        elementDQ.appendChild(document.createTextNode(DQ));
         RSAroot.appendChild(elementDQ);
 
         Element inverseQElement=document.createElement("InverseQ");
-        inverseQElement.appendChild(document.createTextNode(InverseQ.toString()));
+        inverseQElement.appendChild(document.createTextNode(InverseQ));
         RSAroot.appendChild(inverseQElement);
-        
-        lement elementD=document.createElement("D");
-        elementD.appendChild(document.createTextNode(privateExponent.toString()));
+
+        Element elementD=document.createElement("D");
+        elementD.appendChild(document.createTextNode(privateExponent));
         RSAroot.appendChild(elementD);
 
         TransformerFactory transformerFactory=TransformerFactory.newInstance();
@@ -87,4 +87,3 @@ public class xmlCreator {
         System.out.println("Eshte krijuar celesi privat '"+path+"'");
     }
 }
-
