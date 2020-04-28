@@ -80,7 +80,22 @@ public class ReadWriteMessage {
             System.out.println(e.getMessage());
             return "";
         }
+         }
+  public void writeMessage(String marresi){
+        this.emri=marresi;
+        try{
+            //Shikohet a ekziston fillimisht celesi
+            File file=new File("src/PPKeys/keys/"+this.emri+".pub.xml");
+            if(!file.exists()) throw new FileNotFoundException();
 
+            //Krijimi i dokument objekteve per te lexuar vlerat nga xml file
+            DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
+            DocumentBuilder db=dbf.newDocumentBuilder();
+            Document document=db.parse(file);
+
+            //Gjenerimi i DES celesave
+            KeyGenerator keyGenerator=KeyGenerator.getInstance("DES");
+            SecretKey celesi=keyGenerator.generateKey();
 
              
     
