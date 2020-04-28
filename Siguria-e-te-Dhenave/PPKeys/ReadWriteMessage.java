@@ -131,6 +131,12 @@ public class ReadWriteMessage {
 
         byte[] marresiBytes=Base64.getDecoder().decode(messaageArray[0].getBytes());
         String marresi=new String(marresiBytes);
+        
+         File privateFile=new File("src/PPKeys/keys/"+marresi+".xml");
+        if(!privateFile.exists()) throw new FileNotFoundException();
+
+        DocumentBuilder db=DocumentBuilderFactory.newInstance().newDocumentBuilder();
+        Document document=db.parse(privateFile);
             
  
     } 
