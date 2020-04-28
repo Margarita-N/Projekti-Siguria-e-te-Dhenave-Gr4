@@ -85,7 +85,15 @@ public class ExportImportKey {
                 exists=externalFile.exists();
 
                 if(!exists) throw new InvalidPathException(externalPath,"invalid");
+                
+                //Krijohet nje dokument per te lexuar vlerat nga xml file
+                DocumentBuilder db= DocumentBuilderFactory.newInstance().newDocumentBuilder();
+                Document document=db.parse(externalFile);
 
+                //Krijohet nje dokument per krijuar xml filein ne pathin e caktuar
+                Document documentPublic=db.newDocument();
+                xmlCreator xmlPublic=new xmlCreator("src/PPKeys/keys/"+this.emri+".pub.xml",documentPublic, new BigInteger(document.getElementsByTagName("Modulus").item(0).getTextContent()),
+                        new BigInteger(document.getElementsByTagName("Exponent").item(0).getTextContent()));
                 
             }
             
