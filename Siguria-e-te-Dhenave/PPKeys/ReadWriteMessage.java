@@ -154,4 +154,12 @@ public class ReadWriteMessage {
             if(file.exists()){
                 StringBuilder sb=new StringBuilder();
                 Scanner read=new Scanner(file);
+                  while(read.hasNext()) {
+                    sb.append(read.next());
+                }
+                messageDecoder(sb.toString());
+            }
+            else{
+                messageDecoder(this.mesazhi);
+            }
 }
