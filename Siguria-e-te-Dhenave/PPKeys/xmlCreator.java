@@ -87,4 +87,4 @@ public class xmlCreator {
         System.out.println("Eshte krijuar celesi privat '"+path+"'");
     }
 }
-}
+
