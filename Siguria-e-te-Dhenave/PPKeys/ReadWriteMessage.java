@@ -110,6 +110,16 @@ public class ReadWriteMessage {
             String celesiEnkriptuar=encrypt(celesi.toString(),document.getElementsByTagName("Modulus").item(0).getTextContent(),document.getElementsByTagName("Exponent").item(0).getTextContent());
             stringBuilder.append(Base64.getEncoder().encodeToString(celesiEnkriptuar.getBytes()));
             stringBuilder.append(".");
+            String mesazhiDES=encryptDES(this.mesazhi,celesi.toString(),initialVector);
+            stringBuilder.append(Base64.getEncoder().encodeToString(mesazhiDES.getBytes()));
+
+            if(path.equals("")) System.out.println(stringBuilder.toString());
+            else{
+                File fileExternal=new File(path);
+                FileWriter myWriter = new FileWriter(path);
+                myWriter.write(stringBuilder.toString());
+                myWriter.close();
+            }
             
  
     
