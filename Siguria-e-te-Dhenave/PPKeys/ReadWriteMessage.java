@@ -96,7 +96,11 @@ public class ReadWriteMessage {
             //Gjenerimi i DES celesave
             KeyGenerator keyGenerator=KeyGenerator.getInstance("DES");
             SecretKey celesi=keyGenerator.generateKey();
-
+            
+            byte[] initialVector=new byte[8];
+            for(int i=0;i<initialVector.length;i++){
+                initialVector[i]=(byte)((Math.random()*((99-10)+1))+10);
+            }
              
     
     
