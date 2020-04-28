@@ -137,6 +137,14 @@ public class ReadWriteMessage {
 
         DocumentBuilder db=DocumentBuilderFactory.newInstance().newDocumentBuilder();
         Document document=db.parse(privateFile);
+        
+        String iv=new String(Base64.getDecoder().decode(messaageArray[1]));
+        String keyEncrypted=new String(Base64.getDecoder().decode(messaageArray[2].getBytes()));
+        String key=decrypt(keyEncrypted,document.getElementsByTagName("Modulus").item(0).getTextContent(),document.getElementsByTagName("D").item(0).getTextContent());
+        String messageEncrypted=new String(Base64.getDecoder().decode(messaageArray[3].getBytes()));
+        String messageDecrypted=decryptDES(messageEncrypted,key,iv.getBytes());
+
+        System.out.println("Marresi:"+marresi+"\nMesazhi:"+messageDecrypted);
             
  
     } 
