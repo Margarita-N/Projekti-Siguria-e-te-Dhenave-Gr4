@@ -1,11 +1,35 @@
+package PPKeys;
 
+import org.w3c.dom.Document;
+
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.DESKeySpec;
+import javax.crypto.spec.IvParameterSpec;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.math.BigInteger;
+import java.nio.charset.CharacterCodingException;
+import java.security.KeyFactory;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.spec.AlgorithmParameterSpec;
+import java.security.spec.RSAPrivateKeySpec;
+import java.security.spec.RSAPublicKeySpec;
+import java.util.Base64;
+import java.util.Scanner;
 
 public class ReadWriteMessage {
-    String emri;
-    String mesazhi;
-    String path="";
+    private String emri;
+    private String mesazhi;
+    private String path="";
 
-    ReadWriteMessage(String mesazhi){
+    public ReadWriteMessage(String mesazhi){
         this.mesazhi=mesazhi;
     }
 
@@ -13,27 +37,33 @@ public class ReadWriteMessage {
         this.path=path;
     }
 
-    public String encrypt(String modulus,String exponent){
+    public String encrypt(String teksti,String modulus,String exponent){
         try{
+            //Duhet te dekodohet moduli dhe eksponenti
+            String modulusDecoded=new String(Base64.getDecoder().decode(modulus.getBytes()));
+            String exponentDecoded=new String(Base64.getDecoder().decode(exponent.getBytes()));
             //kthehen ne big integer stringjet e modulit dhe eksponentit
-            RSAPublicKeySpec keySpec= new RSAPublicKeySpec(new BigInteger(modulus),new BigInteger(exponent));
+            RSAPublicKeySpec keySpec= new RSAPublicKeySpec(new BigInteger(modulusDecoded),new BigInteger(exponentDecoded));
             KeyFactory keyFactory=KeyFactory.getInstance("RSA");
             PublicKey celesiPublik=keyFactory.generatePublic(keySpec);
 
             Cipher cipher=Cipher.getInstance("RSA/ECB/PKCS1Padding");
             cipher.init(Cipher.ENCRYPT_MODE,celesiPublik);
 
-            byte[] byteCipher=cipher.doFinal(this.mesazhi.getBytes());
+            byte[] byteCipher=cipher.doFinal(teksti.getBytes());
             return Base64.getEncoder().encodeToString(byteCipher);
         }catch(Exception e) {
             System.out.println(e.getMessage());
             return "";
         }
     }
-    
+
     public String decrypt(String teksti,String modulus,String exponent){
         try{
-            RSAPrivateKeySpec keySpec=new RSAPrivateKeySpec(new BigInteger(modulus),new BigInteger(exponent));
+            //Dekodimi nga base64
+            String modulusDecoded=new String(Base64.getDecoder().decode(modulus.getBytes()));
+            String exponentDecoded=new String(Base64.getDecoder().decode(exponent.getBytes()));
+            RSAPrivateKeySpec keySpec=new RSAPrivateKeySpec(new BigInteger(modulusDecoded),new BigInteger(exponentDecoded));
             KeyFactory keyFactory=KeyFactory.getInstance("RSA");
             PrivateKey celesiPrivat=keyFactory.generatePrivate(keySpec);
 
@@ -47,30 +77,35 @@ public class ReadWriteMessage {
             System.out.println(e.getMessage());
             return "";
         }
-        public String encryptDES(String plaintext,String key,byte[] initialVector){
+
+    }
+
+    public String encryptDES(String plaintext,String key,byte[] initialVector){
         try{
+            //Nxjerrja e celesit nga String
             DESKeySpec desKeySpec=new DESKeySpec(key.getBytes());
             SecretKeyFactory skf=SecretKeyFactory.getInstance("DES");
             SecretKey celesi=skf.generateSecret(desKeySpec);
-            
+
             Cipher ciphertext=Cipher.getInstance("DES/CBC/PKCS5Padding");
             AlgorithmParameterSpec initial=new IvParameterSpec(initialVector);
             ciphertext.init(Cipher.ENCRYPT_MODE,celesi,initial);
-            
-             byte[] cipherByte=ciphertext.doFinal(plaintext.getBytes());
+
+            byte[] cipherByte=ciphertext.doFinal(plaintext.getBytes());
             return Base64.getEncoder().encodeToString(cipherByte);
         }catch(Exception e){
             System.out.println(e.getMessage());
             return "";
         }
     }
-         public String decryptDES(String ciphertext,String key,byte[] initialVector){
-            try{
+
+    public String decryptDES(String ciphertext,String key,byte[] initialVector){
+        try{
             byte[] cipherDecoded=Base64.getDecoder().decode(ciphertext);
             DESKeySpec desKeySpec=new DESKeySpec(key.getBytes());
             SecretKeyFactory skf=SecretKeyFactory.getInstance("DES");
             SecretKey celesi=skf.generateSecret(desKeySpec);
-            
+
             Cipher plaintext=Cipher.getInstance("DES/CBC/PKCS5Padding");
             AlgorithmParameterSpec initial=new IvParameterSpec(initialVector);
             plaintext.init(Cipher.DECRYPT_MODE,celesi,initial);
@@ -80,8 +115,10 @@ public class ReadWriteMessage {
             System.out.println(e.getMessage());
             return "";
         }
-         }
-  public void writeMessage(String marresi){
+
+    }
+
+    public void writeMessage(String marresi){
         this.emri=marresi;
         try{
             //Shikohet a ekziston fillimisht celesi
@@ -96,12 +133,15 @@ public class ReadWriteMessage {
             //Gjenerimi i DES celesave
             KeyGenerator keyGenerator=KeyGenerator.getInstance("DES");
             SecretKey celesi=keyGenerator.generateKey();
-            
+
+            //Gjenerimi i nje initial vektori
             byte[] initialVector=new byte[8];
             for(int i=0;i<initialVector.length;i++){
                 initialVector[i]=(byte)((Math.random()*((99-10)+1))+10);
             }
-             StringBuilder stringBuilder=new StringBuilder();
+
+
+            StringBuilder stringBuilder=new StringBuilder();
 
             stringBuilder.append(Base64.getEncoder().encodeToString(marresi.getBytes("UTF8")));
             stringBuilder.append(".");
@@ -120,24 +160,25 @@ public class ReadWriteMessage {
                 myWriter.write(stringBuilder.toString());
                 myWriter.close();
             }
-            }catch(FileNotFoundException e){
+        }catch(FileNotFoundException e){
             System.out.println("Gabim:Celesi publik '"+this.emri+"' nuk ekziston");
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
     }
+
     public void messageDecoder(String message) throws Exception{
         String[] messaageArray=message.split("\\.");
 
         byte[] marresiBytes=Base64.getDecoder().decode(messaageArray[0].getBytes());
         String marresi=new String(marresiBytes);
-        
-         File privateFile=new File("src/PPKeys/keys/"+marresi+".xml");
+
+        File privateFile=new File("src/PPKeys/keys/"+marresi+".xml");
         if(!privateFile.exists()) throw new FileNotFoundException();
 
         DocumentBuilder db=DocumentBuilderFactory.newInstance().newDocumentBuilder();
         Document document=db.parse(privateFile);
-        
+
         String iv=new String(Base64.getDecoder().decode(messaageArray[1]));
         String keyEncrypted=new String(Base64.getDecoder().decode(messaageArray[2].getBytes()));
         String key=decrypt(keyEncrypted,document.getElementsByTagName("Modulus").item(0).getTextContent(),document.getElementsByTagName("D").item(0).getTextContent());
@@ -145,16 +186,16 @@ public class ReadWriteMessage {
         String messageDecrypted=decryptDES(messageEncrypted,key,iv.getBytes());
 
         System.out.println("Marresi:"+marresi+"\nMesazhi:"+messageDecrypted);
-            
- 
-    } 
-         public void readMessage(){
+
+    }
+
+    public void readMessage(){
         try{
             File file=new File(this.mesazhi);
             if(file.exists()){
                 StringBuilder sb=new StringBuilder();
                 Scanner read=new Scanner(file);
-                  while(read.hasNext()) {
+                while(read.hasNext()) {
                     sb.append(read.next());
                 }
                 messageDecoder(sb.toString());
@@ -162,7 +203,8 @@ public class ReadWriteMessage {
             else{
                 messageDecoder(this.mesazhi);
             }
-            }catch(FileNotFoundException e){
+
+        }catch(FileNotFoundException e){
             System.out.println("Gabim:Celesi privat nuk ekziston");
         }catch(CharacterCodingException e){
             System.out.println("Gabim:Mesazhi i dhene nuk eshte i vlefshem");
@@ -171,4 +213,5 @@ public class ReadWriteMessage {
             System.out.println("Nje file i tille nuk ekziston");
         }
     }
+
 }
