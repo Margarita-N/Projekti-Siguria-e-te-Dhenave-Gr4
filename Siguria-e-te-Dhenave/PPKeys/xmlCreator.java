@@ -53,4 +53,16 @@ public class xmlCreator {
         Element publicExponentElement=document.createElement("Exponent");
         publicExponentElement.appendChild(document.createTextNode(publicExponent.toString()));
         RSAroot.appendChild(publicExponentElement);
+        
+        Element elementP=document.createElement("P");
+        elementP.appendChild(document.createTextNode(P.toString()));
+        RSAroot.appendChild(elementP);
+
+        Element elementQ=document.createElement("Q");
+        elementQ.appendChild(document.createTextNode(Q.toString()));
+        RSAroot.appendChild(elementQ);
+
+        Element elementDP=document.createElement("DP");
+        elementDP.appendChild(document.createTextNode(DP.toString()));
+        RSAroot.appendChild(elementDP);
 }
