@@ -94,7 +94,14 @@ public class ExportImportKey {
                 Document documentPublic=db.newDocument();
                 xmlCreator xmlPublic=new xmlCreator("src/PPKeys/keys/"+this.emri+".pub.xml",documentPublic, new BigInteger(document.getElementsByTagName("Modulus").item(0).getTextContent()),
                         new BigInteger(document.getElementsByTagName("Exponent").item(0).getTextContent()));
-                
+              
+              
+                //Krijohet nje dokument per te krijuar xml filein privat dhe gjuan exception nese nuk ekzistojne elementet
+                Document documentPrivate=db.newDocument();
+                xmlCreator xmlPrivate=new xmlCreator("src/PPKeys/keys/"+this.emri+".xml",documentPrivate, new BigInteger(document.getElementsByTagName("Modulus").item(0).getTextContent()),
+                        new BigInteger(document.getElementsByTagName("Exponent").item(0).getTextContent()),new BigInteger(document.getElementsByTagName("P").item(0).getTextContent()),new BigInteger(document.getElementsByTagName("Q").item(0).getTextContent()),
+                        new BigInteger(document.getElementsByTagName("DP").item(0).getTextContent()),new BigInteger(document.getElementsByTagName("DQ").item(0).getTextContent()),new BigInteger(document.getElementsByTagName("InverseQ").item(0).getTextContent()),
+                        new BigInteger(document.getElementsByTagName("D").item(0).getTextContent()));                
             }
             
         }catch(InvalidPathException e){
