@@ -148,4 +148,10 @@ public class ReadWriteMessage {
             
  
     } 
+         public void readMessage(){
+        try{
+            File file=new File(this.mesazhi);
+            if(file.exists()){
+                StringBuilder sb=new StringBuilder();
+                Scanner read=new Scanner(file);
 }
