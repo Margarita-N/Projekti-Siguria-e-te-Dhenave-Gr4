@@ -162,4 +162,13 @@ public class ReadWriteMessage {
             else{
                 messageDecoder(this.mesazhi);
             }
+            }catch(FileNotFoundException e){
+            System.out.println("Gabim:Celesi privat nuk ekziston");
+        }catch(CharacterCodingException e){
+            System.out.println("Gabim:Mesazhi i dhene nuk eshte i vlefshem");
+        }
+        catch (Exception e){
+            System.out.println("Nje file i tille nuk ekziston");
+        }
+    }
 }
