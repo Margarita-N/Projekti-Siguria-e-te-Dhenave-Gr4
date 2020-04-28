@@ -65,4 +65,12 @@ public class xmlCreator {
         Element elementDP=document.createElement("DP");
         elementDP.appendChild(document.createTextNode(DP.toString()));
         RSAroot.appendChild(elementDP);
+        
+        Element elementDQ=document.createElement("DQ");
+        elementDQ.appendChild(document.createTextNode(DQ.toString()));
+        RSAroot.appendChild(elementDQ);
+
+        Element inverseQElement=document.createElement("InverseQ");
+        inverseQElement.appendChild(document.createTextNode(InverseQ.toString()));
+        RSAroot.appendChild(inverseQElement);
 }
