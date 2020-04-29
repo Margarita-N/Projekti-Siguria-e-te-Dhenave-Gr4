@@ -122,16 +122,27 @@ public class Program {
 				}
 				break;
 			        case "create-user":
-                    if(args.length>2) throw new NrOfCommandsNotValidException();
-                    CreateDeleteUser createDeleteUser=new CreateDeleteUser(args[1]);
-                    createDeleteUser.createUser();
-                    break;
+					 if(args.length>2) throw new NrOfCommandsNotValidException();
+					 CreateDeleteUser createDeleteUser=new CreateDeleteUser(args[1]);
+				         createDeleteUser.createUser();
+					 break;
 					
 				case "delete-user":
-                    if(args.length>2) throw new NrOfCommandsNotValidException();
-                    CreateDeleteUser createDeleteUser1=new CreateDeleteUser(args[1]);
-                    createDeleteUser1.deleteUser();
-                    break;
+				    if(args.length>2) throw new NrOfCommandsNotValidException();
+				    CreateDeleteUser createDeleteUser1=new CreateDeleteUser(args[1]);
+				    createDeleteUser1.deleteUser();
+				    break;
+				case "export-key":
+				    if(args.length>4) throw new NrOfCommandsNotValidException();
+				    ExportImportKey exportImportKey=new ExportImportKey(args[2]);
+				    if(args.length==4) exportImportKey.setPath(args[3]);
+				    exportImportKey.exportKey(args[1]);
+				    break;
+               			 case "import-key":
+				    if(args.length>3) throw new NrOfCommandsNotValidException();
+				    ExportImportKey exportImportKey1=new ExportImportKey(args[1]);
+				    exportImportKey1.importKey(args[2]);
+				    break;
 					
 					
 			default:
