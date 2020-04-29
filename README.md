@@ -1,8 +1,9 @@
-#PROJEKTI SIGURIA E TE DHENAVE 
+PROJEKTI SIGURIA E TE DHENAVE 
 
-##Faza1
+Faza1
 
-#######Udhezime:
+Udhezime:
+
 1.Forma e pergjithshme per komanden rail-fence 
 <rail-fence> <nenkomanda> <numri_i_rreshtave> [show] <teksti> ,
 	
@@ -12,7 +13,7 @@
 3.Forma e pergjithshme per komanden numerical 
 <numerical> <nenkomanda> [seperator] [lloji_i_seperator] <teksti>,
 
-######Pershkrimi per komanda:
+Pershkrimi per komanda:
 1.Komanda rail-fence - ben enkriptimin ose dekriptimin e tekstit permes matrices me numrin e caktuar te rreshtave si argument , nenkomanda opsionale "show" shfaq matricen,
 	
 2.Komanda case - ben modifikimin e tekstit me disa 							nenkomanda:upper,lower,capitalize,inverse,alternating.Nenkomanda opsionale "sentence" paraqet fjalite e tekstit ne formate te ndryshme,
@@ -20,7 +21,7 @@
 3.Komanda numerical - ben enkodimin dhe dekodimin e nje teksti ku secila shkronje zevendesohet me poziten e saj ne alfabet.Nenkomanda opsionale "seperator" mundeson caktimin e nje simboli per ndarjen e numrave me te.
 
 
-######Rezultatet me shembuj:
+Rezultatet me shembuj:
 
 	1.Rail-fence
 	     argumenti: rail-fence encrypt 3 "Siguria e te dhenave"
@@ -59,9 +60,10 @@
 	     rezultati: 19=9=7=21=18=9=1=62=5=62=20=5=62=4=8=5=14=1=22=5=
   
 		
-##Faza2 
+Faza2 
 
-######Udhezime:
+Udhezime:
+
 1.Forma e pergjithshme per komanden create-user 
 <create-user> <emri> ,
 	
@@ -80,16 +82,22 @@
 6.Forma e pergjithshme per komanden read-message 
 <read-message> <path/mesazhi>
 	
-######Pershkrimi per komanda:
-	1.Create-user krijon celesin publik dhe privat RSA;
-	2.Delete-user fshin celesin ekzitues RSA;
-	3.Export-key eksporton celesin ne file-in e dhene perndryshe paraqitet ne console;
-	4.Import-key importon celesin publik ose private ne direktoriumin e celesave;
-	5.Write-message shkruan nje mesazh te enkriptuar te dedikuar per nje shfrytezues;
-	6.Read-message e dekripton dhe e shfaq ne console mesazhin e enkriptuar;
+Pershkrimi per komanda:
+
+1.Create-user krijon celesin publik dhe privat RSA;
+	
+2.Delete-user fshin celesin ekzitues RSA;
+	
+3.Export-key eksporton celesin ne file-in e dhene perndryshe paraqitet ne console;
+	
+4.Import-key importon celesin publik ose private ne direktoriumin e celesave;
+
+5.Write-message shkruan nje mesazh te enkriptuar te dedikuar per nje shfrytezues;
+
+6.Read-message e dekripton dhe e shfaq ne console mesazhin e enkriptuar;
 
 
-######Rezultatet me shembuj:
+Rezultatet me shembuj:
 		
 		1.Create-user
 		Argumenti: create-user User
@@ -108,7 +116,8 @@
 		
 		4.Import-key
 		Argumenti: import-key User1 https://pastebin.com/raw/568vxV7i
-		Rezultati: Importohet celesi(nese eshte privat krijohen nje file per publik nje per private) i shfrytezuesit User1 i 			cili merret nga permbajtja URL.
+		Rezultati: Importohet celesi(nese eshte privat krijohen nje file per publik nje per private) i shfrytezuesit User1 i 
+		cili merret nga permbajtja URL.
 		
 		Argumenti: import-key User1 C:\Users\Lenovo\Desktop\Testim\Celesi1.xml
 		Rezultati: Celesin ne file-in Celesi1.xml e importon ne direktoriumin e celesave.
