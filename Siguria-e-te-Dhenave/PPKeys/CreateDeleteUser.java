@@ -70,10 +70,13 @@ public class CreateDeleteUser {
 
         } catch(NamingException e){
             System.out.println("Emri i dhene nuk eshte valid\nEmri duhet te permbaje vetem shkronja,numra apo '_'");
+            System.exit(1);
         } catch(FileAlreadyExistsException e){
             System.out.println("File "+this.emri+" ekziston paraprakisht");
+            System.exit(1);
         } catch(Exception e){
             System.out.println(e.getMessage());
+            System.exit(1);
         }
     }
 
@@ -95,8 +98,10 @@ public class CreateDeleteUser {
             else throw new FileNotFoundException();
         }catch(NamingException e){
             System.out.println("Emri i dhene nuk eshte valid\nEmri duhet te permbaje vetem shkronja,numra apo '_'");
+            System.exit(1);
         }catch(Exception e){
             System.out.println("Gabim:Celesi '"+this.emri+"' nuk ekziston");
+            System.exit(1);
         }
     }
 
