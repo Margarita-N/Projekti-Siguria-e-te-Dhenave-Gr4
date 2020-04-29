@@ -2,20 +2,22 @@ PROJEKTI SIGURIA E TE DHENAVE
 
 Faza1
 
-Udhezime
+Udhezime:
 	1.Forma e pergjithshme per komanden rail-fence 
-	 	<komanda> <nenkomanda> <numri_i_rreshtave> [show] <teksti> 
+	 	<komanda> <nenkomanda> <numri_i_rreshtave> [show] <teksti> ,
 	2.Forma e pergjithshme per komanden case
-		<komanda> <nenkomanda> [sentence] <teksti>
+		<komanda> <nenkomanda> [sentence] <teksti>,
 	3.Forma e pergjithshme per komanden numerical 
-		<komanda> <nenkomanda> [seperator] [lloji_i_seperator] <teksti>
+		<komanda> <nenkomanda> [seperator] [lloji_i_seperator] <teksti>,
 
-Pershkrimi per komanda
-	1.Komanda rail-fence - ben enkriptimin ose dekriptimin e tekstit permes matrices me numrin e     	caktuar te rreshtave si argument , nenkomanda opsionale "show" shfaq matricen.
-	2.Komanda case - ben modifikimin e tekstit me disa 							nenkomanda:upper,lower,capitalize,inverse,alternating.Nenkomanda opsionale "sentence" paraqet 		fjalite e tekstit ne formate te ndryshme
-	3.Komanda numerical - ben enkodimin dhe dekodimin e nje teksti ku secila shkronje zevendesohet 		me poziten e saj ne alfabet.Nenkomanda opsionale "seperator" mundeson caktimin e nje simboli per 	 ndarjen e numrave me te.
+Pershkrimi per komanda:
+	1.Komanda rail-fence - ben enkriptimin ose dekriptimin e tekstit permes matrices me numrin e caktuar te rreshtave si argument , nenkomanda opsionale "show" shfaq matricen,
+	2.Komanda case - ben modifikimin e tekstit me disa 							nenkomanda:upper,lower,capitalize,inverse,alternating.Nenkomanda opsionale "sentence" paraqet fjalite e tekstit ne formate te ndryshme,
+	3.Komanda numerical - ben enkodimin dhe dekodimin e nje teksti ku secila shkronje zevendesohet me poziten e saj ne alfabet.Nenkomanda opsionale "seperator" mundeson caktimin e nje simboli per ndarjen e numrave me te.
 
-Rezultatet me shembuj
+
+Rezultatet me shembuj:
+
 	1.Rail-fence
 	     argumenti: rail-fence encrypt 3 "Siguria e te dhenave"
              rezultati: Suaeevirednegithaw
