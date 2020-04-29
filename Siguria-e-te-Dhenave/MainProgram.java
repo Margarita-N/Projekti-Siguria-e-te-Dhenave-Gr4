@@ -143,6 +143,17 @@ public class Program {
 				    ExportImportKey exportImportKey1=new ExportImportKey(args[1]);
 				    exportImportKey1.importKey(args[2]);
 				    break;
+				 case "write-message":
+				    if(args.length>4) throw new NrOfCommandsNotValidException();
+				    ReadWriteMessage readWriteMessage=new ReadWriteMessage(args[2]);
+				    if(args.length==4) readWriteMessage.setPath(args[3]);
+				    readWriteMessage.writeMessage(args[1]);
+                   		    break;
+				case "read-message":
+				    if(args.length>2) throw new NrOfCommandsNotValidException();
+				    ReadWriteMessage readWriteMessage1=new ReadWriteMessage(args[1]);
+				    readWriteMessage1.readMessage();
+				    break;
 					
 					
 			default:
