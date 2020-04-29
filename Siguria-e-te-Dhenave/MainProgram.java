@@ -126,6 +126,14 @@ public class Program {
                     CreateDeleteUser createDeleteUser=new CreateDeleteUser(args[1]);
                     createDeleteUser.createUser();
                     break;
+					
+				case "delete-user":
+                    if(args.length>2) throw new NrOfCommandsNotValidException();
+                    CreateDeleteUser createDeleteUser1=new CreateDeleteUser(args[1]);
+                    createDeleteUser1.deleteUser();
+                    break;
+					
+					
 			default:
 				throw new MainCommandException();
 					
