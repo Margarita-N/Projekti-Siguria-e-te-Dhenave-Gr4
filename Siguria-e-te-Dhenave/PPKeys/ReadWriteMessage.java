@@ -162,8 +162,10 @@ public class ReadWriteMessage {
             }
         }catch(FileNotFoundException e){
             System.out.println("Gabim:Celesi publik '"+this.emri+"' nuk ekziston");
+            System.exit(1);
         }catch(Exception e){
             System.out.println(e.getMessage());
+            System.exit(1);
         }
     }
 
@@ -206,11 +208,14 @@ public class ReadWriteMessage {
 
         }catch(FileNotFoundException e){
             System.out.println("Gabim:Celesi privat nuk ekziston");
+            System.exit(1);
         }catch(CharacterCodingException e){
             System.out.println("Gabim:Mesazhi i dhene nuk eshte i vlefshem");
+            System.exit(1);
         }
         catch (Exception e){
             System.out.println("Nje file i tille nuk ekziston");
+            System.exit(1);
         }
     }
 
