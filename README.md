@@ -82,6 +82,7 @@ Udhezime:
 6.Forma e pergjithshme per komanden read-message 
 <read-message> <path/mesazhi>
 	
+	
 Pershkrimi per komanda:
 
 1.Create-user krijon celesin publik dhe privat RSA;
