@@ -81,9 +81,11 @@ public class ExportImportKey {
                 }
             }catch(FileNotFoundException m){
                 System.out.println("Gabim:Celesi '"+this.emri+"' nuk ekziston");
+                System.exit(1);
             }
         }catch(Exception e){
             System.err.println(e.getMessage());
+            System.exit(1);
         }
     }
 
@@ -120,7 +122,7 @@ public class ExportImportKey {
                     stringBuilder.append(s.next());
                 }
 
-                this.externalPath="C:\\Users\\HP\\Desktop\\Siguri Teste\\external.xml";
+                this.externalPath="C:\\Users\\Lenovo\\Desktop\\Testim\\external.xml";
                 File fileExternal=new File(this.externalPath);
                 Files.write(Paths.get(this.externalPath),stringBuilder.toString().getBytes());
 
@@ -153,8 +155,10 @@ public class ExportImportKey {
         }catch(InvalidPathException e){
             System.out.println(e.getMessage());
             //System.out.println("Gabim:File i dhene nuk eshte celes valid");
+            System.exit(1);
         }catch (Exception e){
             System.out.println(e.getMessage());
+            System.exit(1);
         }
     }
 }
