@@ -3,12 +3,12 @@ PROJEKTI SIGURIA E TE DHENAVE
 Faza1
 
 Udhezime:
-	1.Forma e pergjithshme per komanden rail-fence 
-	 	<komanda> <nenkomanda> <numri_i_rreshtave> [show] <teksti> ,
-	2.Forma e pergjithshme per komanden case
-		<komanda> <nenkomanda> [sentence] <teksti>,
-	3.Forma e pergjithshme per komanden numerical 
-		<komanda> <nenkomanda> [seperator] [lloji_i_seperator] <teksti>,
+1.Forma e pergjithshme per komanden rail-fence 
+<komanda> <nenkomanda> <numri_i_rreshtave> [show] <teksti> ,
+2.Forma e pergjithshme per komanden case
+<komanda> <nenkomanda> [sentence] <teksti>,
+3.Forma e pergjithshme per komanden numerical 
+<komanda> <nenkomanda> [seperator] [lloji_i_seperator] <teksti>,
 
 Pershkrimi per komanda:
 	1.Komanda rail-fence - ben enkriptimin ose dekriptimin e tekstit permes matrices me numrin e caktuar te rreshtave si argument , nenkomanda opsionale "show" shfaq matricen,
