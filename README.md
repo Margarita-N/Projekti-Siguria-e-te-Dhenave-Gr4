@@ -136,3 +136,14 @@ Rezultatet me shembuj:
 		
 		Argumenti: read-message C:\Users\Lenovo\Desktop\Testim\Teksti.txt
 		Rezultati: Lexon marresin e mesazhit dhe mesazhin e dekriptuar nga file-i Teksti.txt
+		
+		
+Referencat:
+
+Krijimi i XML files:"https://examples.javacodegeeks.com/core-java/xml/parsers/documentbuilderfactory/create-xml-file-in-java-using-dom-parser-example/"
+
+Materiali kryesor i shfrytezuar per krijimin e RSA celesave:"https://www.devglan.com/java8/rsa-encryption-decryption-java"
+
+Materiali kryesor per krijimin e DES celesave,si dhe enkriptimi dhe dekriptimi me DES:"https://www.journaldev.com/1309/java-des-algorithm-program"
+
+Per shkruarjen, leximin dhe zhvendosjen e files jane perdorur ushtrimet e ass.Vigan nga lenda Programimi i Orientuar ne Objekte
