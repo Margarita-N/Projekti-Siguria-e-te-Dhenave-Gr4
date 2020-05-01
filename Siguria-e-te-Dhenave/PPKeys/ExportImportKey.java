@@ -39,8 +39,9 @@ public class ExportImportKey {
                     if(!xmlFile.exists()) throw new FileNotFoundException();
                     if(this.path=="") throw new InvalidPathException(this.path,"empty");
 
-                    Path moved= Files.move(Paths.get("src/PPKeys/keys/"+this.emri+".xml"),Paths.get(this.path));
-                    if(moved != null) System.out.println("Celesi privat u ruajt ne file-in "+this.path);
+                    Path copyPrivate=Files.copy(Paths.get("src/PPKeys/keys/"+this.emri+".pub.xml"),Paths.get(this.path));
+//                    Path moved= Files.move(Paths.get("src/PPKeys/keys/"+this.emri+".xml"),Paths.get(this.path));
+                    if(copyPrivate != null) System.out.println("Celesi privat u ruajt ne file-in "+this.path);
                     else throw new InvalidPathException(this.path,"invalid");
 
                     break;
@@ -50,8 +51,9 @@ public class ExportImportKey {
                     if(!xmlFilePublic.exists()) throw new FileNotFoundException();
                     if(this.path=="") throw new InvalidPathException(this.path,"empty");
 
-                    Path movePublic=Files.move(Paths.get("src/PPKeys/keys/"+this.emri+".pub.xml"),Paths.get(this.path));
-                    if(movePublic != null) System.out.println("Celesi publik u ruajt ne file-in "+this.path);
+                    Path copyPublic=Files.copy(Paths.get("src/PPKeys/keys/"+this.emri+".pub.xml"),Paths.get(this.path));
+//                    Path movePublic=Files.move(Paths.get("src/PPKeys/keys/"+this.emri+".pub.xml"),Paths.get(this.path));
+                    if(copyPublic != null) System.out.println("Celesi publik u ruajt ne file-in "+this.path);
                     else throw new InvalidPathException(this.path,"invalid");
                     break;
                 default:
@@ -122,7 +124,7 @@ public class ExportImportKey {
                     stringBuilder.append(s.next());
                 }
 
-                this.externalPath="C:\\Users\\Lenovo\\Desktop\\Testim\\external.xml";
+                this.externalPath="C:\\Users\\HP\\Desktop\\Siguri Teste\\external.xml";
                 File fileExternal=new File(this.externalPath);
                 Files.write(Paths.get(this.externalPath),stringBuilder.toString().getBytes());
 
