@@ -155,11 +155,10 @@ public class ExportImportKey {
 
 
         }catch(InvalidPathException e){
-            System.out.println(e.getMessage());
-            //System.out.println("Gabim:File i dhene nuk eshte celes valid");
+            System.out.println("Gabim:File i dhene nuk eshte celes valid");
             System.exit(1);
         }catch (Exception e){
-            System.out.println(e.getMessage());
+            System.out.println("Gabim:Path i dhene nuk eshte i vlefshem");
             System.exit(1);
         }
     }
