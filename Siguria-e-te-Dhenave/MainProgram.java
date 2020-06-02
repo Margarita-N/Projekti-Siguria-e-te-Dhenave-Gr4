@@ -139,6 +139,11 @@ public class MainProgram {
                         System.exit(1);
                         break;
                     }
+                     if (!passwordi.matches("^(?=.{6,})(?=.*[a-z]|[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=*]).*$")){
+                        System.out.println("Fjalekalimi duhet te permbaje se paku nje numer ose simbol");
+                        System.exit(1);
+                        break;
+                    }
                     CreateDeleteUser createDeleteUser=new CreateDeleteUser(args[1]);
                     createDeleteUser.createUser();
                     break;
