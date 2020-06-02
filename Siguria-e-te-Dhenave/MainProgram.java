@@ -132,11 +132,6 @@ public class MainProgram {
                     break;
                 case "create-user":
                     if(args.length>2) throw new NrOfCommandsNotValidException();
-                    CreateDeleteUser createDeleteUser=new CreateDeleteUser(args[1]);
-                    createDeleteUser.createUser();
-                    break;
-                case "delete-user":
-                    if(args.length>2) throw new NrOfCommandsNotValidException();
                      System.out.println("Jepni fjalekalimin: ");
                     String passwordi=sc.nextLine();
                     if(passwordi.length()<6){
@@ -144,6 +139,11 @@ public class MainProgram {
                         System.exit(1);
                         break;
                     }
+                    CreateDeleteUser createDeleteUser=new CreateDeleteUser(args[1]);
+                    createDeleteUser.createUser();
+                    break;
+                case "delete-user":
+                    if(args.length>2) throw new NrOfCommandsNotValidException();
                     CreateDeleteUser createDeleteUser1=new CreateDeleteUser(args[1]);
                     createDeleteUser1.deleteUser();
                     break;
