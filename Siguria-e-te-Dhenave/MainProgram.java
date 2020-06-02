@@ -144,9 +144,14 @@ public class MainProgram {
                         System.exit(1);
                         break;
                     }
-                    CreateDeleteUser createDeleteUser=new CreateDeleteUser(args[1]);
-                    createDeleteUser.createUser();
-                    break;
+                    System.out.println("Perserit fjalekalimin");
+                    String passwordi2=sc.nextLine();
+
+                    if(passwordi.equals(passwordi2)){
+                        CreateDeleteUser createDeleteUser=new CreateDeleteUser(args[1]);
+                        createDeleteUser.createUser();
+                        break;
+                    }
                 case "delete-user":
                     if(args.length>2) throw new NrOfCommandsNotValidException();
                     CreateDeleteUser createDeleteUser1=new CreateDeleteUser(args[1]);
