@@ -137,6 +137,13 @@ public class MainProgram {
                     break;
                 case "delete-user":
                     if(args.length>2) throw new NrOfCommandsNotValidException();
+                     System.out.println("Jepni fjalekalimin: ");
+                    String passwordi=sc.nextLine();
+                    if(passwordi.length()<6){
+                        System.out.println("Gabim: Fjalekalimi duhet te permbaje se paku 6 karaktere");
+                        System.exit(1);
+                        break;
+                    }
                     CreateDeleteUser createDeleteUser1=new CreateDeleteUser(args[1]);
                     createDeleteUser1.deleteUser();
                     break;
