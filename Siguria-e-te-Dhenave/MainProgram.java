@@ -155,6 +155,12 @@ public class MainProgram {
                     else if(!passwordi.equals(passwordi2)){
                         System.out.println("Gabim: Fjalekalimet nuk perputhen");
                         System.exit(1);
+                        break;
+                    }
+                            else {
+                        System.out.println("Fjalekalimi nuk eshte valid");
+                        System.exit(1);
+                        break;
                     }
                 case "delete-user":
                     if(args.length>2) throw new NrOfCommandsNotValidException();
