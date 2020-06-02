@@ -42,6 +42,16 @@ public class CreateToken {
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             PrivateKey celesi = keyFactory.generatePrivate(keySpec);
             
+            Instant currentTime = Instant.now();
+
+            String jwt = Jwts.builder()
+                    .setIssuer(issuer)
+                    .setIssuedAt(Date.from(currentTime))
+                    .setExpiration(Date.from(currentTime.plus(20, ChronoUnit.MINUTES)))
+                    .signWith(SignatureAlgorithm.RS256, celesi)
+                    .compact();
+
+            return jwt;
         } catch (FileNotFoundException e) {
             System.out.println("Gabim:Nuk ekziston celesi privat " + issuer + ".xml");
             return "";
