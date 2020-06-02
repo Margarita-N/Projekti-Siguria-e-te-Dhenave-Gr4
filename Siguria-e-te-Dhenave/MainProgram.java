@@ -152,6 +152,10 @@ public class MainProgram {
                         createDeleteUser.createUser();
                         break;
                     }
+                    else if(!passwordi.equals(passwordi2)){
+                        System.out.println("Gabim: Fjalekalimet nuk perputhen");
+                        System.exit(1);
+                    }
                 case "delete-user":
                     if(args.length>2) throw new NrOfCommandsNotValidException();
                     CreateDeleteUser createDeleteUser1=new CreateDeleteUser(args[1]);
