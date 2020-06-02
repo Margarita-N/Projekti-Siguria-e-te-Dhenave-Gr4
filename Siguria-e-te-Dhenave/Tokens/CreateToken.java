@@ -34,6 +34,13 @@ public class CreateToken {
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.parse(xmlFile);
 
+            String modulusDecoded = new String(Base64.getDecoder().decode(document.getElementsByTagName("Modulus").item(0).getTextContent().getBytes()));
+            String exponentDecoded = new String(Base64.getDecoder().decode(document.getElementsByTagName("D").item(0).getTextContent().getBytes()));
+            String publicexponentDecoded = new String(Base64.getDecoder().decode(document.getElementsByTagName("Exponent").item(0).getTextContent().getBytes()));
+            //kthehen ne big integer stringjet e modulit dhe eksponentit
+            RSAPrivateKeySpec keySpec = new RSAPrivateKeySpec(new BigInteger(modulusDecoded), new BigInteger(exponentDecoded));
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            PrivateKey celesi = keyFactory.generatePrivate(keySpec);
             
         } catch (FileNotFoundException e) {
             System.out.println("Gabim:Nuk ekziston celesi privat " + issuer + ".xml");
