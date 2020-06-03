@@ -34,7 +34,23 @@ public class Login {
                 hashedPassword=rs.getString("hashedPassword");
             }
 
-            
+            if(salt==null || hashedPassword==null)
+                throw new Exception("Perdoruesi nuk ekziston!");
+
+            MessageDigest messageDigest=MessageDigest.getInstance("SHA-512");
+            messageDigest.update(salt.getBytes(StandardCharsets.UTF_8));
+            byte[] bytes=messageDigest.digest(this.password.getBytes(StandardCharsets.UTF_8));
+            String encodedHash= Base64.getEncoder().encodeToString(bytes);
+
+            if(encodedHash.equals(hashedPassword)){
+                CreateToken createToken=new CreateToken(this.username);
+                String token=createToken.generateToken(this.username);
+                System.out.println("Token:"+token);
+            }
+            else throw new Exception("Gabim:Shfrytezuesi ose fjalekalimi i gabuar!");
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
 
 
     }
