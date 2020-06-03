@@ -42,6 +42,9 @@ public class CreateDeleteUser {
         //Krijimi i celsave publik dhe privat
         try{
             validimi(this.emri);
+            
+            DBConnection connectionClass = new DBConnection();
+            Connection connection = connectionClass.getConnection();
 
             KeyPair dyshjaCelesave=keyGenerator();
             PublicKey celesiPublik=dyshjaCelesave.getPublic();
