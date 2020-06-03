@@ -39,7 +39,12 @@ public class ValidateToken {
             System.out.println("Valid:"+valid);
             System.out.println("Expiration:"+expirationDate.toString());
         }catch(ExpiredJwtException e){
-           
+           String issuer=e.getClaims().getIssuer();
+            Date expirationDate=e.getClaims().getExpiration();
+
+            System.out.println("User:"+issuer);
+            System.out.println("Valid:jo");
+            System.out.println("Expiration:"+expirationDate.toString());
         }
 
     }
