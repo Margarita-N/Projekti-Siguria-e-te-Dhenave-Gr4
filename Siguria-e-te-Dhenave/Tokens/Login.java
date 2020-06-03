@@ -26,7 +26,6 @@ public class Login {
 
             Statement stmt=connection.createStatement();
             ResultSet rs=stmt.executeQuery(query);
-            stmt.executeUpdate(query);
 
             String salt=null;
             String hashedPassword=null;
