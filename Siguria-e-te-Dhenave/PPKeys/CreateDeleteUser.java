@@ -15,6 +15,7 @@ import java.util.Base64;
 
 public class CreateDeleteUser {
     String emri;
+    String passwordi;
     public CreateDeleteUser(String emri){
         this.emri=emri;
     }
@@ -36,7 +37,8 @@ public class CreateDeleteUser {
         return celsat.generateKeyPair();
     }
 
-    public void createUser(){
+    public void createUser(String passwordi){
+        this.passwordi=passwordi;
         //Krijimi i celsave publik dhe privat
         try{
             validimi(this.emri);
