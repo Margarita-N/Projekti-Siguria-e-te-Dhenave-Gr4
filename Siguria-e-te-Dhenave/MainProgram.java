@@ -149,7 +149,7 @@ public class MainProgram {
 
                     if(passwordi.equals(passwordi2)){
                         CreateDeleteUser createDeleteUser=new CreateDeleteUser(args[1]);
-                        createDeleteUser.createUser();
+                        createDeleteUser.createUser(passwordi);
                         break;
                     }
                     else if(!passwordi.equals(passwordi2)){
