@@ -107,6 +107,10 @@ public class CreateDeleteUser {
 
         try{
             validimi(this.emri);
+            
+            DBConnection connectionClass = new DBConnection();
+            Connection connection = connectionClass.getConnection();
+            
             if(Files.exists(pathPrivate)) {
                 Files.delete(pathPrivate);
                 System.out.println("Eshte larguar celesi privat '"+this.emri+"'");
