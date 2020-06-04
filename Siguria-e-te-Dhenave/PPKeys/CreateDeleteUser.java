@@ -83,6 +83,11 @@ public class CreateDeleteUser {
             xmlCreator xml =new xmlCreator(privateFile,documentPrivate,modulusEncoded,exponentEncoded,PrimeP,PrimeQ,DP,DQ,InverseQ,privateExponent);
             xmlCreator xmlPublic=new xmlCreator(publicFile,documentPublic,modulusEncoded,exponentEncoded);
 
+             String query="INSERT INTO perdoruesit values ('"+this.emri+"','"+salt_encoded+"','"+encodedHash+"')";
+            Statement stmt = connection.createStatement();
+            stmt.executeUpdate(query);
+
+            
         } catch(NamingException e){
             System.out.println("Emri i dhene nuk eshte valid\nEmri duhet te permbaje vetem shkronja,numra apo '_'");
             System.exit(1);
