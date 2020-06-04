@@ -45,6 +45,12 @@ public class CreateDeleteUser {
             
             DBConnection connectionClass = new DBConnection();
             Connection connection = connectionClass.getConnection();
+            
+            SecureRandom secureRandom=new SecureRandom();
+            byte[] salt=new byte[24];
+            secureRandom.nextBytes(salt);
+            String salt_encoded= Base64.getEncoder().encodeToString(salt);
+
 
             KeyPair dyshjaCelesave=keyGenerator();
             PublicKey celesiPublik=dyshjaCelesave.getPublic();
