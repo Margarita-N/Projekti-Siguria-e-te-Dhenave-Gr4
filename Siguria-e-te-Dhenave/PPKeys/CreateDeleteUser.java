@@ -111,6 +111,9 @@ public class CreateDeleteUser {
             DBConnection connectionClass = new DBConnection();
             Connection connection = connectionClass.getConnection();
             
+            String query="DELETE FROM perdoruesit WHERE username='"+this.emri+"'";
+            Statement stmt=connection.createStatement();stmt.executeUpdate(query);
+            
             if(Files.exists(pathPrivate)) {
                 Files.delete(pathPrivate);
                 System.out.println("Eshte larguar celesi privat '"+this.emri+"'");
