@@ -50,7 +50,11 @@ public class CreateDeleteUser {
             byte[] salt=new byte[24];
             secureRandom.nextBytes(salt);
             String salt_encoded= Base64.getEncoder().encodeToString(salt);
-
+            
+            MessageDigest messageDigest=MessageDigest.getInstance("SHA-512");
+            messageDigest.update(salt_encoded.getBytes(StandardCharsets.UTF_8));
+            byte[] bytes=messageDigest.digest(this.passwordi.getBytes(StandardCharsets.UTF_8));
+            String encodedHash= Base64.getEncoder().encodeToString(bytes);
 
             KeyPair dyshjaCelesave=keyGenerator();
             PublicKey celesiPublik=dyshjaCelesave.getPublic();
