@@ -183,7 +183,7 @@ Rezultatet me shembuj:
 		Argumenti: create-user User
 		Jepni fjalekalimin:
 		Perseritni fjalekalimin:
-		Rezultati: Krijohet celesi publik dhe privat i perdoruesit me emer User ne direktoriumin e celesave dhe ruhet emri dhe 			fjalekalimi i tij ne databaze
+		Rezultati: Krijohet celesi publik dhe privat i perdoruesit me emer User ne direktoriumin e celesave dhe ruhet emri dhe fjalekalimi i tij ne databaze
 		
 		2.Delete-user
 		Argmunenti: delete-user User
