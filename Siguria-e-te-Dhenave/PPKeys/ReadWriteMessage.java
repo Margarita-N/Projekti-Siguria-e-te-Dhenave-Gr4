@@ -211,6 +211,12 @@ public class ReadWriteMessage {
             DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
             DocumentBuilder db=dbf.newDocumentBuilder();
             Document document=db.parse(file);
+            
+            String iv = new String(Base64.getDecoder().decode(messaageArray[1]));
+            String keyEncrypted = new String(Base64.getDecoder().decode(messaageArray[2].getBytes()));
+            String key = decrypt(keyEncrypted, document.getElementsByTagName("Modulus").item(0).getTextContent(), document.getElementsByTagName("D").item(0).getTextContent());
+            String messageEncrypted = new String(Base64.getDecoder().decode(messaageArray[3].getBytes()));
+            String messageDecrypted = decryptDES(messageEncrypted, key, iv.getBytes());
 
         }catch(FileNotFoundException e){
             System.out.println("Gabim:Celesi publik '"+this.emri+"' nuk ekziston");
