@@ -137,7 +137,32 @@ Rezultatet me shembuj:
 		Argumenti: read-message C:\Users\Lenovo\Desktop\Testim\Teksti.txt
 		Rezultati: Lexon marresin e mesazhit dhe mesazhin e dekriptuar nga file-i Teksti.txt
 		
-		
+
+Faza3
+
+Udhezime:
+
+1.Forma e pergjithshme per komanden create-user
+<create-user> <emri>,
+	
+2.Forma e pergjithshme per komanden delete-user
+<delete-user> <emri>,
+	
+3.Forma e pergjithshme per komanden login 
+<login> <emri>
+	
+4.Forma e pergjithshme per komanden status
+<status> <token>
+	
+5.Forma e pergjithshme per komanden  write-message
+<write-message> <marresi> <mesazhi> [path] <token>
+
+6.Forma e pergjithshme per komanden read-message
+<read-message> <mesazhi>
+	
+
+	
+
 Referencat:
 
 Krijimi i XML files:"https://examples.javacodegeeks.com/core-java/xml/parsers/documentbuilderfactory/create-xml-file-in-java-using-dom-parser-example/"
