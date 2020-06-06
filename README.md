@@ -188,6 +188,16 @@ Rezultatet me shembuj:
 		2.Delete-user
 		Argmunenti: delete-user User
 		Rezultati: Fshin celesin ekzistues te perdoruesit me emer User dhe largon te dhenat e tij nga databaza
+		
+		3.Login
+		Argumenti: login User
+		Jepni fjalekalimin:
+		Rezultati: Leshohet nje token i nenshkruar ne qofte se emri i user dhe fjalekalimi pershtaten 
+		
+		4.Status
+		Argumenti: status eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJNY....
+		Rezultati: Tregon emrin e user pastaj tregon nese  tokeni i dhene eshte valid apo jo dhe kohen e skadimit
+		
 
 
 	
