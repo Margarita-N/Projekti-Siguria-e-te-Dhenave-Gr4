@@ -212,7 +212,9 @@ public class ReadWriteMessage {
             DocumentBuilder db=dbf.newDocumentBuilder();
             Document document=db.parse(file);
             
-            
+             //Gjenerimi i DES celesave
+            KeyGenerator keyGenerator=KeyGenerator.getInstance("DES");
+            SecretKey celesi=keyGenerator.generateKey();
 
         }catch(FileNotFoundException e){
             System.out.println("Gabim:Celesi publik '"+this.emri+"' nuk ekziston");
