@@ -222,6 +222,16 @@ public class ReadWriteMessage {
                 initialVector[i]=(byte)((Math.random()*((99-10)+1))+10);
             }
             
+            String issuer=getSender(token);
+            Date expirationDate=getExpirationDate(token);
+
+            ValidateToken validateToken=new ValidateToken(token);
+            Boolean valid=validateToken.validate(issuer,expirationDate);
+
+            File privateKeyFile=new File("C:\\Users\\HP\\IdeaProjects\\jwt-excercises\\src\\main\\java\\PPKeys\\keys\\"+issuer+".xml");
+            if(!privateKeyFile.exists()) throw new Exception("Gabim:Nuk ekziston celesi privat "+issuer+".xml");
+            Document privateXML=db.parse(privateKeyFile);
+            
             
 
         }catch(FileNotFoundException e){
