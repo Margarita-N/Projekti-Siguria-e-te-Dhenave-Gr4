@@ -249,6 +249,26 @@ public class ReadWriteMessage {
             stringBuilder.append(Base64.getEncoder().encodeToString(issuer.getBytes(StandardCharsets.UTF_8)));
             stringBuilder.append(".");
             
+            //Gjenerimi i celesit privat
+            String modulusDecoded=new String(Base64.getDecoder().decode(privateXML.getElementsByTagName("Modulus").item(0).getTextContent().getBytes()));
+            String exponentDecoded=new String(Base64.getDecoder().decode(privateXML.getElementsByTagName("D").item(0).getTextContent().getBytes()));
+            RSAPrivateKeySpec privateKeySpec=new RSAPrivateKeySpec(new BigInteger(modulusDecoded),new BigInteger(exponentDecoded));
+            KeyFactory kf=KeyFactory.getInstance("RSA");
+            PrivateKey celesiPrivat=kf.generatePrivate(privateKeySpec);
+
+            Signature signedMessage=Signature.getInstance("SHA256withRSA");
+            signedMessage.initSign(celesiPrivat);
+            signedMessage.update(mesazhiDES.getBytes());
+            byte[] signature=signedMessage.sign();
+            stringBuilder.append(Base64.getEncoder().encodeToString(signature));
+
+            if(path.equals("")) System.out.println(stringBuilder.toString());
+            else{
+                File fileExternal=new File(path);
+                FileWriter myWriter = new FileWriter(path);
+                myWriter.write(stringBuilder.toString());
+                myWriter.close();
+            }
             
 
         }catch(FileNotFoundException e){
