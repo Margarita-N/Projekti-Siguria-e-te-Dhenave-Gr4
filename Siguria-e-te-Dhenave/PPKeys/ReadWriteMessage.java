@@ -314,6 +314,16 @@ public class ReadWriteMessage {
             RSAPublicKeySpec publicKeySpec=new RSAPublicKeySpec(new BigInteger(modulusDecoded),new BigInteger(exponentDecoded));
             KeyFactory keyFactory=KeyFactory.getInstance("RSA");
             PublicKey publicKey=keyFactory.generatePublic(publicKeySpec);
+            
+            byte[] decodedSign=Base64.getDecoder().decode(messaageArray[5].getBytes());
+            Signature decryptedSign=Signature.getInstance("SHA256withRSA");
+            decryptedSign.initVerify(publicKey);
+            decryptedSign.update(Base64.getDecoder().decode(messaageArray[3].getBytes()));
+
+            boolean valid=decryptedSign.verify(decodedSign);
+            System.out.print(valid==true?"valid":"jovalid");
+
+        }
 
         
 
