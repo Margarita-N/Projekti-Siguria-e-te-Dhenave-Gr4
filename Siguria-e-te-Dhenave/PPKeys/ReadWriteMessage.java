@@ -307,6 +307,13 @@ public class ReadWriteMessage {
 
             DocumentBuilder documentBuilder=DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document publicKeyDocument=documentBuilder.parse(publicXML);
+            
+            String modulusDecoded=new String(Base64.getDecoder().decode(publicKeyDocument.getElementsByTagName("Modulus").item(0).getTextContent().getBytes()));
+            String exponentDecoded=new String(Base64.getDecoder().decode(publicKeyDocument.getElementsByTagName("Exponent").item(0).getTextContent().getBytes()));
+
+            RSAPublicKeySpec publicKeySpec=new RSAPublicKeySpec(new BigInteger(modulusDecoded),new BigInteger(exponentDecoded));
+            KeyFactory keyFactory=KeyFactory.getInstance("RSA");
+            PublicKey publicKey=keyFactory.generatePublic(publicKeySpec);
 
         
 
