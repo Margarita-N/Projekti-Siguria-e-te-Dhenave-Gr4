@@ -128,6 +128,10 @@ public class ReadWriteMessage {
             issuer=claims.getIssuer();
             return issuer;
         }
+        catch(ExpiredJwtException e){
+            issuer=e.getClaims().getIssuer();
+            return issuer;
+        }
     }
 
     public void writeMessage(String marresi){
