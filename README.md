@@ -142,8 +142,7 @@ Faza3
 
 Udhezime:
 
-1.Forma e pergjithshme per komanden create-user
-<create-user> <emri>,
+1.Forma e pergjithshme per komanden create-user <create-user> <emri>
 	
 2.Forma e pergjithshme per komanden delete-user
 <delete-user> <emri>,
