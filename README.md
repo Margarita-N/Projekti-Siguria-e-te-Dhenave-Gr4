@@ -160,6 +160,23 @@ Udhezime:
 <read-message> <mesazhi>
 	
 
+
+Pershkrimi per komanda:
+
+
+1.Create-user krijon celesin publik dhe privat RSA te perdoruesit, por per krijimin e tyre kerkohet nje fjalekalim i cili eshte valid, fjalekalimi ruhet salted dhe hashed ne databaze(MYSQL) se bashku me emrin e perdoruesit i cili jepet si argument.
+
+2.Delete-user fshin celesin ekzistues te atij perdoruesi , ku gjithashtu e fshin perdoruesin (emrin dhe fjalekalimin e tij) edhe nga databaza.
+
+3.Login fillimisht teston nese ekziston ai perdorues dhe e kerkon fjalekalimin e tij , pastaj nese keto vertetohen atehere leshohet nje token i nenshkruar.
+
+4.Status na tregon ne qofte se tokeni eshte valid, pra jep informate ne qofte se ai ka skaduar ,nenshkrimi nuk eshte valid apo nuk ekzisotn ai shfrytezues
+
+5.Write-message ku pervec qe shkruan nje mesazh te enkriptuar te dedikuar per nje shfrytezues e bashkangjet edhe emrin dhe nenshkrimin e shfrytezuesit 
+
+6.Read-message e dekripton dhe e shfaq ne console mesazhin e enkriptuar dhe nese figuron pjesa e derguesit/nenshkrimit atehere behet edhe verifikimi i atij nenshkrimi , ne te kundert jep vetem marresin, mesazhin ,derguesin.
+
+
 	
 
 Referencat:
