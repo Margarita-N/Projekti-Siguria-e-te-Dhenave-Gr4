@@ -58,6 +58,12 @@ public class ValidateToken {
             DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document document = documentBuilder.parse(xmlFile);
 
+            String modulusDecoded = new String(Base64.getDecoder().decode(document.getElementsByTagName("Modulus").item(0).getTextContent().getBytes()));
+            String exponentDecoded = new String(Base64.getDecoder().decode(document.getElementsByTagName("Exponent").item(0).getTextContent().getBytes()));
+
+            RSAPublicKeySpec keySpec = new RSAPublicKeySpec(new BigInteger(modulusDecoded), new BigInteger(exponentDecoded));
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            PublicKey celesi = keyFactory.generatePublic(keySpec);
             
         } catch(FileNotFoundException e){
             System.out.println("Gabim:Nuk ekziston celesi publik "+issuer+".pub.xml");
