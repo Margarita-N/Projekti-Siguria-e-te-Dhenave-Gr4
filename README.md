@@ -177,6 +177,19 @@ Pershkrimi per komanda:
 6.Read-message e dekripton dhe e shfaq ne console mesazhin e enkriptuar dhe nese figuron pjesa e derguesit/nenshkrimit atehere behet edhe verifikimi i atij nenshkrimi , ne te kundert jep vetem marresin, mesazhin ,derguesin.
 
 
+Rezultatet me shembuj:
+
+		1.Create-user
+		Argumenti: create-user User
+		Jepni fjalekalimin:
+		Perseritni fjalekalimin:
+		Rezultati: Krijohet celesi publik dhe privat i perdoruesit me emer User ne direktoriumin e celesave dhe ruhet emri dhe 			fjalekalimi i tij ne databaze
+		
+		2.Delete-user
+		Argmunenti: delete-user User
+		Rezultati: Fshin celesin ekzistues te perdoruesit me emer User dhe largon te dhenat e tij nga databaza
+
+
 	
 
 Referencat:
