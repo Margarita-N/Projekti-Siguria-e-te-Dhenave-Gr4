@@ -41,7 +41,7 @@ public class CreateToken {
             RSAPrivateKeySpec keySpec = new RSAPrivateKeySpec(new BigInteger(modulusDecoded), new BigInteger(exponentDecoded));
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             PrivateKey celesi = keyFactory.generatePrivate(keySpec);
-            
+
             Instant currentTime = Instant.now();
 
             String jwt = Jwts.builder()
