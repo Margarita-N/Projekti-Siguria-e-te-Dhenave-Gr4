@@ -198,6 +198,14 @@ Rezultatet me shembuj:
 		Argumenti: status eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJNY....
 		Rezultati: Tregon emrin e user pastaj tregon nese  tokeni i dhene eshte valid apo jo dhe kohen e skadimit
 		
+		5.Write-message
+		Argumenti: write-message User Pershendetje eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJNY....
+		Rezultati: Jep mesazhin e enkriptuar ne qofte se tokeni eshte valid
+		
+		6.Read-message
+		Argumenti: read-message mesazhi_i_enkriptuar 
+		Rezultati: Shfaq ne console marresin , mesazhin e dekriptuar ,derguesin, dhe nese jepet celesi publik i derguesit atehere tregon se nenshkrimi eshte valid , ne te kundert tek nenshkrimi tregon se mungon ai celes.
+		
 
 
 	
