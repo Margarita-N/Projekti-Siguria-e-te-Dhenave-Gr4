@@ -232,6 +232,23 @@ public class ReadWriteMessage {
             if(!privateKeyFile.exists()) throw new Exception("Gabim:Nuk ekziston celesi privat "+issuer+".xml");
             Document privateXML=db.parse(privateKeyFile);
             
+            if(!valid) throw new JwtException("Tokeni nuk eshte valid!");
+
+            StringBuilder stringBuilder=new StringBuilder();
+
+            stringBuilder.append(Base64.getEncoder().encodeToString(marresi.getBytes(StandardCharsets.UTF_8)));
+            stringBuilder.append(".");
+            stringBuilder.append(Base64.getEncoder().encodeToString(initialVector));
+            stringBuilder.append(".");
+            String celesiEnkriptuar=encrypt(celesi.toString(),document.getElementsByTagName("Modulus").item(0).getTextContent(),document.getElementsByTagName("Exponent").item(0).getTextContent());
+            stringBuilder.append(Base64.getEncoder().encodeToString(celesiEnkriptuar.getBytes()));
+            stringBuilder.append(".");
+            String mesazhiDES=encryptDES(this.mesazhi,celesi.toString(),initialVector);
+            stringBuilder.append(Base64.getEncoder().encodeToString(mesazhiDES.getBytes()));
+            stringBuilder.append(".");
+            stringBuilder.append(Base64.getEncoder().encodeToString(issuer.getBytes(StandardCharsets.UTF_8)));
+            stringBuilder.append(".");
+            
             
 
         }catch(FileNotFoundException e){
