@@ -117,6 +117,18 @@ public class ReadWriteMessage {
         }
 
     }
+    private String getSender(String token){
+        String issuer;
+        try{
+            String[] tokenArray=token.split("\\.");
+            String unsignedToken=tokenArray[0]+"."+tokenArray[1]+".";
+
+            Jwt<Header, Claims> result= Jwts.parser().parse(unsignedToken);
+            Claims claims= result.getBody();
+            issuer=claims.getIssuer();
+            return issuer;
+        }
+    }
 
     public void writeMessage(String marresi){
         this.emri=marresi;
