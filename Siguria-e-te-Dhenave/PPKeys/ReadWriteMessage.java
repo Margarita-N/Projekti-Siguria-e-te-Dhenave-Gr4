@@ -199,6 +199,27 @@ public class ReadWriteMessage {
             System.exit(1);
         }
     }
+    
+    public void writeMessageToken(String marresi,String token){
+        this.emri=marresi;
+        try{
+            //Shikohet a ekziston fillimisht celesi
+            File file=new File("C:\\Users\\HP\\IdeaProjects\\jwt-excercises\\src\\main\\java\\PPKeys\\keys\\"+marresi+".pub.xml");
+            if(!file.exists()) throw new FileNotFoundException();
+
+            //Krijimi i dokument objekteve per te lexuar vlerat nga xml file
+            DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
+            DocumentBuilder db=dbf.newDocumentBuilder();
+            Document document=db.parse(file);
+
+        }catch(FileNotFoundException e){
+            System.out.println("Gabim:Celesi publik '"+this.emri+"' nuk ekziston");
+            System.exit(1);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            System.exit(1);
+        }
+    }
 
     public void messageDecoder(String message) throws Exception{
         String[] messaageArray=message.split("\\.");
