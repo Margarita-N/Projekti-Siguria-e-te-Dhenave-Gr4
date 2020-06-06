@@ -65,6 +65,11 @@ public class ValidateToken {
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             PublicKey celesi = keyFactory.generatePublic(keySpec);
             
+            Jws<Claims> jws = Jwts.parser().setSigningKey(celesi).parseClaimsJws(this.token);
+
+            Instant now = Instant.now();
+            if (Date.from(now).compareTo(expirationTime) > 0) return false;
+            else return true;
         } catch(FileNotFoundException e){
             System.out.println("Gabim:Nuk ekziston celesi publik "+issuer+".pub.xml");
             return false;
