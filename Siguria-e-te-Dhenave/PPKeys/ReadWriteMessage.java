@@ -141,6 +141,11 @@ public class ReadWriteMessage {
 
             Jwt<Header, Claims> result= Jwts.parser().parse(unsignedToken);
             Claims claims= result.getBody();
+            expirationDate=claims.getExpiration();
+            return expirationDate;
+        }catch(ExpiredJwtException e){
+            expirationDate=e.getClaims().getExpiration();
+            return expirationDate;
 
         }
       }
