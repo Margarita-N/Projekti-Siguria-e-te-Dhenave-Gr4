@@ -299,6 +299,15 @@ public class ReadWriteMessage {
         String messageDecrypted=decryptDES(messageEncrypted,key,iv.getBytes());
 
         System.out.println("Marresi:"+marresi+"\nMesazhi:"+messageDecrypted);
+        if(messaageArray.length>4){
+            String sender=new String(Base64.getDecoder().decode(messaageArray[4]));
+            System.out.print("Derguesi:"+sender+"\nNenshkrimi:");
+            File publicXML=new File("C:\\Users\\HP\\IdeaProjects\\jwt-excercises\\src\\main\\java\\PPKeys\\keys\\"+sender+".pub.xml");
+            if(!publicXML.exists()) throw new Exception("Mungon celesi publik "+sender+".pub.xml");
+
+            DocumentBuilder documentBuilder=DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            Document publicKeyDocument=documentBuilder.parse(publicXML);
+
         
 
     }
