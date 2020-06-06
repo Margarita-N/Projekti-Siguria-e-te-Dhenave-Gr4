@@ -1,11 +1,17 @@
-import Komandat.*;
+import Commands.*;
 import PPKeys.CreateDeleteUser;
 import PPKeys.ExportImportKey;
 import PPKeys.xmlCreator;
 import PPKeys.ReadWriteMessage;
+import Tokens.Login;
+import Tokens.ValidateToken;
+
+import java.util.Scanner;
+
 
 public class MainProgram {
     public static void main(String[] args) throws MainCommandException, NrOfCommandsNotValidException,NumberFormatException {
+        Scanner input=new Scanner(System.in);
         try {
             switch(args[0]) {
                 case "rail-fence":
@@ -36,7 +42,6 @@ public class MainProgram {
                                     "\n1.encrypt\n2.decrypt+\nKUJDES madhesine e shkronjave");
                             System.exit(1);
                             break;
-
                     }
                     break;
                 case "case":
@@ -132,20 +137,20 @@ public class MainProgram {
                     break;
                 case "create-user":
                     if(args.length>2) throw new NrOfCommandsNotValidException();
-                     System.out.println("Jepni fjalekalimin: ");
-                    String passwordi=sc.nextLine();
+                    System.out.println("Jepni fjalekalimin: ");
+                    String passwordi=input.nextLine();
                     if(passwordi.length()<6){
                         System.out.println("Gabim: Fjalekalimi duhet te permbaje se paku 6 karaktere");
                         System.exit(1);
                         break;
                     }
-                     if (!passwordi.matches("^(?=.{6,})(?=.*[a-z]|[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=*]).*$")){
+                    if (!passwordi.matches("^(?=.{6,})(?=.*[a-z]|[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=*]).*$")){
                         System.out.println("Fjalekalimi duhet te permbaje se paku nje numer ose simbol");
                         System.exit(1);
                         break;
                     }
                     System.out.println("Perserit fjalekalimin");
-                    String passwordi2=sc.nextLine();
+                    String passwordi2=input.nextLine();
 
                     if(passwordi.equals(passwordi2)){
                         CreateDeleteUser createDeleteUser=new CreateDeleteUser(args[1]);
@@ -157,7 +162,7 @@ public class MainProgram {
                         System.exit(1);
                         break;
                     }
-                            else {
+                    else {
                         System.out.println("Fjalekalimi nuk eshte valid");
                         System.exit(1);
                         break;
@@ -179,17 +184,34 @@ public class MainProgram {
                     exportImportKey1.importKey(args[2]);
                     break;
                 case "write-message":
-                    if(args.length>4) throw new NrOfCommandsNotValidException();
+                    if(args.length>5) throw new NrOfCommandsNotValidException();
                     ReadWriteMessage readWriteMessage=new ReadWriteMessage(args[2]);
-                    if(args.length==4) readWriteMessage.setPath(args[3]);
-                    readWriteMessage.writeMessage(args[1]);
+                    if(args.length==5) {
+                        readWriteMessage.setPath(args[3]);
+                        readWriteMessage.writeMessageToken(args[1],args[4]);
+                    }else if(args.length==4){
+                        readWriteMessage.writeMessageToken(args[1],args[3]);
+                    }else {
+                        readWriteMessage.writeMessage(args[1]);
+                    }
                     break;
                 case "read-message":
                     if(args.length>2) throw new NrOfCommandsNotValidException();
                     ReadWriteMessage readWriteMessage1=new ReadWriteMessage(args[1]);
                     readWriteMessage1.readMessage();
                     break;
-
+                case "login":
+                    if(args.length>2) throw new NrOfCommandsNotValidException();
+                    System.out.print("Jepni fjalekalimin:");
+                    String password=input.nextLine();
+                    Login login=new Login(args[1],password);
+                    login.loginGenerateToken();
+                    break;
+                case "status":
+                    if(args.length>2) throw new NrOfCommandsNotValidException();
+                    ValidateToken validateToken=new ValidateToken(args[1]);
+                    validateToken.status();
+                    break;
                 default:
                     throw new MainCommandException();
             }
@@ -207,6 +229,4 @@ public class MainProgram {
             System.exit(1);
         }
     }
-
-
 }
