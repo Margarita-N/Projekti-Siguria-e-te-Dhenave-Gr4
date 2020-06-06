@@ -212,11 +212,17 @@ public class ReadWriteMessage {
             DocumentBuilder db=dbf.newDocumentBuilder();
             Document document=db.parse(file);
             
-            String iv = new String(Base64.getDecoder().decode(messaageArray[1]));
-            String keyEncrypted = new String(Base64.getDecoder().decode(messaageArray[2].getBytes()));
-            String key = decrypt(keyEncrypted, document.getElementsByTagName("Modulus").item(0).getTextContent(), document.getElementsByTagName("D").item(0).getTextContent());
-            String messageEncrypted = new String(Base64.getDecoder().decode(messaageArray[3].getBytes()));
-            String messageDecrypted = decryptDES(messageEncrypted, key, iv.getBytes());
+            //Gjenerimi i DES celesave
+            KeyGenerator keyGenerator=KeyGenerator.getInstance("DES");
+            SecretKey celesi=keyGenerator.generateKey();
+
+            //Gjenerimi i nje initial vektori
+            byte[] initialVector=new byte[8];
+            for(int i=0;i<initialVector.length;i++){
+                initialVector[i]=(byte)((Math.random()*((99-10)+1))+10);
+            }
+            
+            
 
         }catch(FileNotFoundException e){
             System.out.println("Gabim:Celesi publik '"+this.emri+"' nuk ekziston");
