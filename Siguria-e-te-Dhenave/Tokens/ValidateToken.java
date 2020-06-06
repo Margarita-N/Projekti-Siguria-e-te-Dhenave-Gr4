@@ -39,7 +39,7 @@ public class ValidateToken {
             System.out.println("Valid:"+valid);
             System.out.println("Expiration:"+expirationDate.toString());
         }catch(ExpiredJwtException e){
-           String issuer=e.getClaims().getIssuer();
+            String issuer=e.getClaims().getIssuer();
             Date expirationDate=e.getClaims().getExpiration();
 
             System.out.println("User:"+issuer);
@@ -49,6 +49,23 @@ public class ValidateToken {
 
     }
 
-   
+    public boolean validate(String issuer,Date expirationTime) {
+        try {
+            //XML file i celesit publik te derguesit
+            File xmlFile = new File("C:\\Users\\HP\\IdeaProjects\\jwt-excercises\\src\\main\\java\\PPKeys\\keys\\" + issuer + ".pub.xml");
+            if (!xmlFile.exists()) throw new FileNotFoundException();
+
+            DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            Document document = documentBuilder.parse(xmlFile);
+
+            
+        } catch(FileNotFoundException e){
+            System.out.println("Gabim:Nuk ekziston celesi publik "+issuer+".pub.xml");
+            return false;
+        }
+        catch (Exception e) {
+            return false;
+        }
+    }
 
 }
