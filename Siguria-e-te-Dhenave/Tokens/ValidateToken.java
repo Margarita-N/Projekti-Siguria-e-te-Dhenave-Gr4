@@ -13,6 +13,7 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.RSAPrivateKeySpec;
 import java.security.spec.RSAPublicKeySpec;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Base64;
 import java.util.Date;
@@ -35,16 +36,20 @@ public class ValidateToken {
             Date expirationDate=claims.getExpiration();
             String valid=validate(issuer,expirationDate)? "po":"jo";
 
+            String dateToFormat=expirationDate.toString().replace("CEST","");
+
             System.out.println("User:"+issuer);
             System.out.println("Valid:"+valid);
-            System.out.println("Expiration:"+expirationDate.toString());
+            System.out.println("Expiration:"+formatDate(dateToFormat));
         }catch(ExpiredJwtException e){
             String issuer=e.getClaims().getIssuer();
             Date expirationDate=e.getClaims().getExpiration();
 
+            String dateToFormat=expirationDate.toString().replace("CEST","");
+
             System.out.println("User:"+issuer);
             System.out.println("Valid:jo");
-            System.out.println("Expiration:"+expirationDate.toString());
+            System.out.println("Expiration:"+formatDate(dateToFormat));
         }
 
     }
@@ -64,7 +69,7 @@ public class ValidateToken {
             RSAPublicKeySpec keySpec = new RSAPublicKeySpec(new BigInteger(modulusDecoded), new BigInteger(exponentDecoded));
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             PublicKey celesi = keyFactory.generatePublic(keySpec);
-            
+
             Jws<Claims> jws = Jwts.parser().setSigningKey(celesi).parseClaimsJws(this.token);
 
             Instant now = Instant.now();
@@ -77,6 +82,19 @@ public class ValidateToken {
         catch (Exception e) {
             return false;
         }
+    }
+
+    private String formatDate(String date){
+        try{
+            SimpleDateFormat simpleDateFormat=new SimpleDateFormat("EEE MMM dd HH:mm:ss yyyy");
+            Date dateP=simpleDateFormat.parse(date);
+            String sdf=new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(dateP);
+            return sdf;
+        }catch(Exception e){
+            System.out.print(e.getMessage());
+            return "";
+        }
+
     }
 
 }
